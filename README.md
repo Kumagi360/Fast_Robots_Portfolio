@@ -1,6 +1,8 @@
 # Fast Robots Portfolio
 ## Kunal Gupta, kg379
 
+This is my lab portfolio for ECE 4160, taken in SP23.
+
 
 Template Credits:
 
