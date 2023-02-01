@@ -45,15 +45,16 @@
       <div class="container">
         <div class="row mb-4 align-items-center">
           <a class="navbar-brand" href="index.html">Back to Portfolio</a>
+          <p> </p>
           <h1>Lab 1</h1>
+
+          <p> </p>
           <h4>Objective: </h4>
           <p>
             In Lab 1, we sought to familiarise ourselves with the Artemis Nano board, and the Arduino IDE. To do so, we
             ran provided scripts for inbuilt LED blink, microphone read, temperature read, and Serial communication.
           </p>
-          <video width="320px" height="240px" controls>
-            <source src="/vids/blink.mp4" type="video/mp4">
-          </video>
+
 
           <p> </p>
 
@@ -63,32 +64,49 @@
             pin
             blinked at a rate of one cycle per two seconds, as demonstrated here:
           </p>
+          <video preload="auto" controls>
+            <source src="vids/blink.mp4" type="video/mp4">
+          </video>
+
           <p> </p>
+          <br>
+          <br>
           <h6>Serial Communication:</h6>
           <p> Uploading the Artemis ‘Example04_Serial.ino’ script at 115200 baud rate, the Nano began monitoring the
             serial port connected to my computer at the prescribed 115200 baud rate. When text, followed by a newline,
             was entered through the Arduino IDE serial monitor, the characters were read from the serial buffer by the
             Nano and printed back to the computer to appear in the serial monitor. Writing “Hello World!” echoed back as
             demonstrated here:</p>
-          <p> </p>
+          <video preload="auto" controls>
+            <source src="vids/serial.mp4" type="video/mp4">
+          </video>
+          <p>
+          </p>
+          <br>
+          <br>
           <h6> Temperature Read:</h6>
           <p> Uploading the Artemis ‘Example02_AnalogRead.ino’ script at 115200 baud rate, the Nano began reading the
             value at its temperature sensor on the ADCPIN with a resolution of 16 bits. Following some abstracted
             processing, this value was printed as an embedding labelled ‘external’ in a string at the prescribed baud
             rate of 115200. Blowing on the board caused the temperature reading to increase then normalize rapidly, as
             demonstrated here:</p>
-
+          <video preload="auto" controls>
+            <source src="vids/temp.mp4" type="video/mp4">
+          </video>
           <p> </p>
+          <br>
+          <br>
 
           <h6>Microphone Read: </h6>
           <p>Uploading the Artemis ‘Example1_MicrophoneOutput.ino, the Nano began monitoring the frequencies its pulse
             density microphone was sampling using FFT. The frequency bin with the highest magnitude was printed at the
             prescribed baud rate of 115200. By (attempting to) whistle near the microphone in a descending frequency,
-            the printed frequency decreased, as demonstrated here:</p>
-
-
-
+            the printed frequency decreased, as demonstrated here:
           </p>
+
+          <video preload="auto" controls>
+            <source src="vids/mphone.mp4" type="video/mp4">
+          </video>
 
         </div>
       </div>
