@@ -1,0 +1,318 @@
+2023-02-02 15:01:48,312 | MainThread   | [DEBUG   ] | <module>            |: debug
+2023-02-02 15:01:48,314 | MainThread   | [INFO    ] | <module>            |: info
+2023-02-02 15:01:48,316 | MainThread   | [WARNING ] | <module>            |: warning
+2023-02-02 15:01:48,318 | MainThread   | [ERROR   ] | <module>            |: error
+2023-02-02 15:01:48,320 | MainThread   | [CRITICAL] | <module>            |: critical
+2023-02-02 15:02:06,175 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-02-02 15:02:06,176 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.3.0-x86_64-i386-64bit
+2023-02-02 15:02:06,178 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:02:16,833 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:02:17,837 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:02:17,838 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:02:27,848 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:02:28,854 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:02:28,863 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:02:38,876 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:02:39,880 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:04:14,790 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:04:24,842 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:04:25,847 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:04:25,848 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:04:35,856 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:04:36,863 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:04:36,864 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:04:46,876 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:04:47,881 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:06:24,582 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:06:34,603 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:06:35,606 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:06:35,608 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:06:45,627 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:06:46,629 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:06:46,630 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:06:56,643 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:06:57,646 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:07:36,901 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:07:46,925 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:07:47,927 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:07:47,928 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:07:57,936 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:07:58,943 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:07:58,944 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:08:08,954 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:08:09,962 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:09:57,339 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-02 15:09:57,347 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-02-02 15:09:57,351 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
+2023-02-02 15:10:01,460 | MainThread   | [DEBUG   ] | <module>            |: debug
+2023-02-02 15:10:01,460 | MainThread   | [INFO    ] | <module>            |: info
+2023-02-02 15:10:01,474 | MainThread   | [WARNING ] | <module>            |: warning
+2023-02-02 15:10:01,477 | MainThread   | [ERROR   ] | <module>            |: error
+2023-02-02 15:10:01,486 | MainThread   | [CRITICAL] | <module>            |: critical
+2023-02-02 15:10:01,547 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-02-02 15:10:01,547 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.3.0-x86_64-i386-64bit
+2023-02-02 15:10:01,548 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:10:11,638 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:10:12,643 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:10:12,645 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:10:22,655 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:10:23,656 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:10:23,683 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:10:33,714 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:10:34,721 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:11:44,031 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:11:54,052 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:11:55,059 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:11:55,060 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:12:05,074 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:12:06,077 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:12:06,079 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:12:16,091 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:12:17,099 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:15:52,617 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-02 15:15:52,633 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-02-02 15:15:52,635 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
+2023-02-02 15:15:56,656 | MainThread   | [DEBUG   ] | <module>            |: debug
+2023-02-02 15:15:56,657 | MainThread   | [INFO    ] | <module>            |: info
+2023-02-02 15:15:56,659 | MainThread   | [WARNING ] | <module>            |: warning
+2023-02-02 15:15:56,661 | MainThread   | [ERROR   ] | <module>            |: error
+2023-02-02 15:15:56,662 | MainThread   | [CRITICAL] | <module>            |: critical
+2023-02-02 15:15:56,735 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-02-02 15:15:56,735 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.3.0-x86_64-i386-64bit
+2023-02-02 15:15:56,736 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:16:06,856 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:16:07,858 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:16:07,860 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:16:17,870 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:16:18,874 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:16:18,875 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:16:28,890 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:16:29,897 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:19:25,858 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:19:35,872 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:19:36,877 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:19:36,879 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:19:46,891 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:19:47,894 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:19:47,896 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:19:57,913 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:19:58,917 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:22:11,732 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:22:21,744 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:22:22,750 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:22:22,751 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:22:32,765 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:22:33,767 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:22:33,769 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:22:43,784 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:22:44,789 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:23:16,393 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:23:26,410 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:23:27,416 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:23:27,420 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:23:37,431 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:23:38,438 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:23:38,440 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:23:48,451 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:23:49,457 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:25:21,465 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-02 15:25:21,468 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-02-02 15:25:21,472 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
+2023-02-02 15:25:25,247 | MainThread   | [DEBUG   ] | <module>            |: debug
+2023-02-02 15:25:25,248 | MainThread   | [INFO    ] | <module>            |: info
+2023-02-02 15:25:25,252 | MainThread   | [WARNING ] | <module>            |: warning
+2023-02-02 15:25:25,254 | MainThread   | [ERROR   ] | <module>            |: error
+2023-02-02 15:25:25,264 | MainThread   | [CRITICAL] | <module>            |: critical
+2023-02-02 15:25:25,451 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-02-02 15:25:25,451 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.3.0-x86_64-i386-64bit
+2023-02-02 15:25:25,453 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:25:35,696 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:25:36,702 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:25:36,703 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:25:46,715 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:25:47,722 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:25:47,724 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:25:57,736 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:25:58,742 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:28:08,704 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:28:18,717 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:28:19,721 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:28:19,722 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:28:29,732 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:28:30,741 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:28:30,743 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:28:40,759 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:28:41,765 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:29:00,389 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:29:10,402 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:29:11,406 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:29:11,408 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:29:21,420 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:29:22,427 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:29:22,428 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:29:32,439 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:29:33,445 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:30:54,340 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-02 15:30:54,344 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-02-02 15:30:54,347 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
+2023-02-02 15:30:58,229 | MainThread   | [DEBUG   ] | <module>            |: debug
+2023-02-02 15:30:58,230 | MainThread   | [INFO    ] | <module>            |: info
+2023-02-02 15:30:58,235 | MainThread   | [WARNING ] | <module>            |: warning
+2023-02-02 15:30:58,238 | MainThread   | [ERROR   ] | <module>            |: error
+2023-02-02 15:30:58,253 | MainThread   | [CRITICAL] | <module>            |: critical
+2023-02-02 15:30:58,277 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-02-02 15:30:58,277 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.3.0-x86_64-i386-64bit
+2023-02-02 15:30:58,278 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:31:08,405 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:31:09,411 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:31:09,412 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:31:19,423 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:31:20,425 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:31:20,427 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:31:30,440 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:31:31,446 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:31:46,590 | MainThread   | [DEBUG   ] | <module>            |: debug
+2023-02-02 15:31:46,590 | MainThread   | [INFO    ] | <module>            |: info
+2023-02-02 15:31:46,594 | MainThread   | [WARNING ] | <module>            |: warning
+2023-02-02 15:31:46,598 | MainThread   | [ERROR   ] | <module>            |: error
+2023-02-02 15:31:46,600 | MainThread   | [CRITICAL] | <module>            |: critical
+2023-02-02 15:31:49,462 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:31:59,473 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:32:00,476 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:32:00,478 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:32:10,492 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:32:11,497 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:32:11,499 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:32:21,511 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:32:22,515 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:33:07,943 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:33:17,959 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:33:18,961 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:33:18,962 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:33:28,995 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:33:30,001 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:33:30,003 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:33:40,014 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:33:41,018 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:34:38,602 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:34:48,615 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:34:49,618 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:34:49,620 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:34:59,633 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:35:00,636 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:35:00,637 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:35:10,651 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:35:11,655 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:35:44,949 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:35:54,970 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:35:55,976 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:35:55,977 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:36:05,987 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:36:06,989 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:36:06,990 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:36:17,002 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:36:18,008 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:36:26,329 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:36:36,346 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:36:37,350 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:36:37,352 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:36:47,364 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:36:48,368 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:36:48,370 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:36:58,391 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:36:59,397 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:37:34,999 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:37:45,016 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:37:46,020 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:37:46,022 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:37:56,031 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:37:57,034 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:37:57,035 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:38:07,047 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:38:08,053 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:38:11,601 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:38:21,623 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:38:22,630 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:38:22,641 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:38:32,658 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:38:33,663 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:38:33,664 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:38:35,301 | MainThread   | [ERROR   ] | _connect            |: 
+2023-02-02 15:39:20,513 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-02 15:39:20,515 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-02-02 15:39:20,516 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
+2023-02-02 15:39:25,855 | MainThread   | [DEBUG   ] | <module>            |: debug
+2023-02-02 15:39:25,855 | MainThread   | [INFO    ] | <module>            |: info
+2023-02-02 15:39:25,857 | MainThread   | [WARNING ] | <module>            |: warning
+2023-02-02 15:39:25,859 | MainThread   | [ERROR   ] | <module>            |: error
+2023-02-02 15:39:25,863 | MainThread   | [CRITICAL] | <module>            |: critical
+2023-02-02 15:39:25,955 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-02-02 15:39:25,955 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.3.0-x86_64-i386-64bit
+2023-02-02 15:39:25,957 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:39:36,204 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:39:37,210 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:39:37,212 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:39:47,226 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:39:48,228 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:39:48,229 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:39:58,243 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:39:59,246 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:41:21,736 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:41:31,744 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:41:32,750 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:41:32,753 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:41:42,763 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:41:43,769 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:41:43,770 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:41:53,782 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:41:54,789 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:43:25,866 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:43:35,882 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:43:36,885 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:43:36,887 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:43:46,903 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:43:47,909 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:43:47,911 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:43:57,919 | MainThread   | [ERROR   ] | _connect            |: Device with address C0:83:D5:66:86:3C was not found
+2023-02-02 15:43:58,923 | MainThread   | [WARNING ] | connect             |: Attempting to connect again...
+2023-02-02 15:44:16,669 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-02 15:44:16,671 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-02-02 15:44:16,678 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
+2023-02-02 15:44:20,603 | MainThread   | [DEBUG   ] | <module>            |: debug
+2023-02-02 15:44:20,603 | MainThread   | [INFO    ] | <module>            |: info
+2023-02-02 15:44:20,604 | MainThread   | [WARNING ] | <module>            |: warning
+2023-02-02 15:44:20,606 | MainThread   | [ERROR   ] | <module>            |: error
+2023-02-02 15:44:20,608 | MainThread   | [CRITICAL] | <module>            |: critical
+2023-02-02 15:44:20,694 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-02-02 15:44:20,694 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.3.0-x86_64-i386-64bit
+2023-02-02 15:44:20,696 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:44:23,454 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-02-02 15:44:24,903 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-02 15:44:24,940 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-02 15:44:24,942 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-02-02 15:44:24,943 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
+2023-02-02 15:45:06,515 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-02-02 15:45:06,516 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.3.0-x86_64-i386-64bit
+2023-02-02 15:45:06,516 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:45:09,161 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-02-02 15:48:18,245 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-02 15:51:41,130 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:51:43,606 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-02-02 15:51:50,898 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-02 15:52:01,462 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 15:52:04,076 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-02-02 16:22:16,211 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-02 16:22:50,109 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 16:22:52,568 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-02-02 16:24:22,448 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-02 16:24:47,359 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 16:24:50,068 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-02-02 16:26:32,636 | MainThread   | [INFO    ] | _connect            |: Already connected to a BLE device
+2023-02-02 16:27:20,548 | MainThread   | [INFO    ] | _connect            |: Already connected to a BLE device
+2023-02-02 16:32:15,666 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-02 16:33:19,476 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-02 16:33:22,004 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-02-02 16:57:22,918 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-02 16:57:40,985 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-02 16:57:40,989 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-02-02 16:57:40,990 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
