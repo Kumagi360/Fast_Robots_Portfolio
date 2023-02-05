@@ -13,6 +13,17 @@
 #define BLE_UUID_TX_STRING "f235a225-6735-4d73-94cb-ee5dfce9ba83"
 //////////// BLE UUIDs ////////////
 
+
+//////////// TEMP ADC /////////////
+#define RESOLUTION_BITS (16)      // choose resolution (explained in depth below)
+
+#ifdef ADCPIN
+#define EXTERNAL_ADC_PIN ADCPIN   // ADCPIN is the lowest analog capable pin exposed on the variant
+#endif
+//////////// TEMP ADC /////////////
+
+
+
 //////////// Global Variables ////////////
 BLEService testService(BLE_UUID_TEST_SERVICE);
 
@@ -41,7 +52,8 @@ enum CommandTypes
     ECHO,
     DANCE,
     SET_VEL,
-    GET_TIME_MILLIS
+    GET_TIME_MILLIS,
+    GET_TEMP_5s
 };
 
 void
@@ -125,10 +137,16 @@ handle_command()
 
             tx_estring_value.clear();
             tx_estring_value.append(char_arr);
-            tx_characteristic_string.writeValue(tx_estring_value.c_str());
+
+            char src[MAX_MSG_SIZE], dest[MAX_MSG_SIZE];
+            strcpy(src, tx_estring_value.c_str()); 
+            strcpy(dest,"Artemis said: " );
+            strcat(dest, src);
+            
+            tx_characteristic_string.writeValue(dest);
 
             Serial.print("Sent back: ");
-            Serial.println(tx_estring_value.c_str());
+            Serial.println(dest);
             
             break;
 
@@ -148,15 +166,49 @@ handle_command()
             break;
 
         case GET_TIME_MILLIS:
+            char time_arr[MAX_MSG_SIZE];
+            strcpy(time_arr, "T:");
+            char buffer[MAX_MSG_SIZE];
+            sprintf(buffer, "%d", millis());
+            strcat(time_arr, buffer);
+
             tx_estring_value.clear();
-            tx_estring_value.append("T:123456");
+            tx_estring_value.append(time_arr);
             tx_characteristic_string.writeValue(tx_estring_value.c_str());
 
             Serial.print("Sent back: ");
             Serial.println(tx_estring_value.c_str());
 
             break;
-        
+
+        case GET_TEMP_5s:
+
+            int external = analogRead(EXTERNAL_ADC_PIN); // reads the analog voltage on the selected analog pin
+
+            // puts time in time_arr            
+            char stamped_temp[MAX_MSG_SIZE];
+            strcpy(stamped_temp, "T:");
+
+            buffer[MAX_MSG_SIZE];
+            sprintf(buffer, "%d", millis());
+            strcat(stamped_temp, buffer);
+
+            strcat(stamped_temp, "|");
+
+            char temp_buffer[MAX_MSG_SIZE];
+            sprintf(temp_buffer, "%d", getTempDegC());
+            strcat(stamped_temp, temp_buffer);
+
+            tx_estring_value.clear();
+            tx_estring_value.append(stamped_temp);
+            tx_characteristic_string.writeValue(tx_estring_value.c_str());
+
+            Serial.print("Sent back: ");
+            Serial.println(tx_estring_value.c_str());
+
+            break;
+
+
         /* 
          * The default case may not capture all types of invalid commands.
          * It is safer to validate the command string on the central device (in python)
@@ -173,6 +225,14 @@ void
 setup()
 {
     Serial.begin(115200);
+
+    analogReadResolution(RESOLUTION_BITS);    // set the resolution of analogRead results
+                                            //  - maximum: 16 bits (padded with trailing zeroes)
+                                            //  - ADC:     14 bits (maximum ADC resolution)
+                                            //  - default: 10 bits (standard Arduino setting)
+                                            //  - minimum:  1 bit
+
+    analogWriteResolution(RESOLUTION_BITS);   // match resolution for analogWrite
 
     BLE.begin();
 

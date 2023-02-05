@@ -8,5 +8,6 @@ class CMD(Enum):
     DANCE = 4
     SET_VEL = 5
     GET_TIME_MILLIS = 6
+    GET_TEMP_5s = 7
     
     
