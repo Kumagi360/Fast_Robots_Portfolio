@@ -53,7 +53,8 @@ enum CommandTypes
     DANCE,
     SET_VEL,
     GET_TIME_MILLIS,
-    GET_TEMP_5s
+    GET_TEMP_5s,
+    GET_TEMP_5s_RAPID
 };
 
 void
@@ -165,7 +166,8 @@ handle_command()
 
             break;
 
-        case GET_TIME_MILLIS:
+        case GET_TIME_MILLIS: {
+
             char time_arr[MAX_MSG_SIZE];
             strcpy(time_arr, "T:");
             char buffer[MAX_MSG_SIZE];
@@ -180,33 +182,54 @@ handle_command()
             Serial.println(tx_estring_value.c_str());
 
             break;
+        }
 
-        case GET_TEMP_5s:
+        case GET_TEMP_5s:{
+            for (int instance = 0; instance < 5; instance++){
 
-            int external = analogRead(EXTERNAL_ADC_PIN); // reads the analog voltage on the selected analog pin
+                char time_arr[MAX_MSG_SIZE];
+                strcpy(time_arr, "T:");
+                char buffer[MAX_MSG_SIZE];
+                sprintf(buffer, "%d", millis());
+                strcat(time_arr, buffer);
 
-            // puts time in time_arr            
-            char stamped_temp[MAX_MSG_SIZE];
-            strcpy(stamped_temp, "T:");
+                tx_estring_value.clear();            
+                tx_estring_value.append(time_arr);
+                tx_estring_value.append("|");
+                tx_estring_value.append("C:");
+                tx_estring_value.append(getTempDegC());
+                tx_characteristic_string.writeValue(tx_estring_value.c_str());
 
-            buffer[MAX_MSG_SIZE];
-            sprintf(buffer, "%d", millis());
-            strcat(stamped_temp, buffer);
+                delay(1000);
 
-            strcat(stamped_temp, "|");
-
-            char temp_buffer[MAX_MSG_SIZE];
-            sprintf(temp_buffer, "%d", getTempDegC());
-            strcat(stamped_temp, temp_buffer);
-
-            tx_estring_value.clear();
-            tx_estring_value.append(stamped_temp);
-            tx_characteristic_string.writeValue(tx_estring_value.c_str());
-
-            Serial.print("Sent back: ");
-            Serial.println(tx_estring_value.c_str());
+            }
 
             break;
+        }
+
+        case GET_TEMP_5s_RAPID: {
+            int start_times = millis();
+
+            while (millis() - start_times < 5000){
+              
+                char time_arr[MAX_MSG_SIZE];
+                strcpy(time_arr, "T:");
+                char buffer[MAX_MSG_SIZE];
+                sprintf(buffer, "%d", millis());
+                strcat(time_arr, buffer);
+
+                tx_estring_value.clear();            
+                tx_estring_value.append(time_arr);
+                tx_estring_value.append("|");
+                tx_estring_value.append("C:");
+                tx_estring_value.append(getTempDegC());
+                tx_characteristic_string.writeValue(tx_estring_value.c_str());
+
+            }
+
+
+            break;
+          }
 
 
         /* 
