@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>MyPortfolio Bootstrap Template - Work Single</title>
+  <title>Lab 2</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -53,6 +53,188 @@
           <p>
             In Lab 2, I set up and experimented with Bluetooth Low Energy communication between my computer and the Artemis Nano. Using the publish-and-subscribe model, I requested and viewed clock and temperature sensor information from the Artemis in a Jupyter Notebook.
           </p>
+
+          <h4>Prelab: </h4>
+          <p>In the prelab I created a virtual environment and installed the packages necessary for the lab. This included Numpy, Pyyaml, Colorado, Nest_Asyncio, Bleak, and JupyterLab. Reading through both the Arduino and Python codebases, as well as the documentation for BLE, I became familiar with the functions and classes to be used in the lab. 
+          </p>
+
+          <h4>Codebase: </h4>
+          <p>In the Arduino codebase, there is a class to send and receive data using BLE methods, a class to manipulate character arrays, and a class to parse commands. 
+            In the Python codebase, the setting of MAC address and service UUID allows a connection to be established. There are also files to enumerate commands, log data, and write the tasks of the lab. The ArtemisBLEController class gives us the member functions to send and receive data from the Artemis over BLE. 
+            
+            Together with the lab script run on the Nano, these enable the publisher-and-subscriber BLE model to function. Using this model, when the peripheral device, the Artemis, updates a characteristic within a service, the notify mechanism on the central device, the computer with Jupiter Notebook, will stream the string without an explicit read command. Additionally, commands enable the Jupiter notebook to elicit responses from the Artemis, to be retrieved from updated characteristic values.
+          </p>
+
+          <h4>Configuration: </h4>
+          <p>Having read through the Arduino and Python codebases, and documentation for BLE, I proceeded to print the MAC address for my Artemis board. 
+            </p>
+
+            <img class="img-fluid" src="imgs/lab2/MAC.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            
+            <p>
+            Updating the MAC address, and replacing the default UUID with a new generated one, in connections.yaml enabled the Juypter Notebook to link to the Artemis board over Bluetooth.
+          </p>
+
+            <img class="img-fluid" src="imgs/lab2/connections.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h4>Demo: </h4>
+            <p>
+              Running each of the cells of the demo, I was able to verify the behavior of my bluetooth connection. 
+            </p>
+
+            <h6>Verification of Connection (Notebook side): </h6>
+            <img class="img-fluid" img src="imgs/lab2/connected.png" >
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h6>Verification of Connection (Artemis side): </h6>
+            <img class="img-fluid" src="imgs/lab2/connect_N.png">
+            <p> </p>
+            <p> </p>
+
+            <h6>Verification of data received from Artemis: </h6>
+            <img class="img-fluid" src="imgs/lab2/receive.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h6>Verification of command sent to Artemis (Notebook side): </h6>
+            <img class="img-fluid" src="imgs/lab2/send.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h6>Verification of command sent to Artemis (Artemis side): </h6>
+            <img class="img-fluid" src="imgs/lab2/send_N.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h6>Verification of disconnect from Artemis (Notebook side): </h6>
+            <img class="img-fluid" src="imgs/lab2/disc.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h6>Verification of disconnect from Artemis (Artemis side): </h6>
+            <img class="img-fluid" src="imgs/lab2/disc_N.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+
+            <h4>Tasks:</h4>
+            <h6> Task 1: </h6>
+            <p>The first task was to use the provided ECHO command to send a string to the Artemis, and receive back a modification of the string. In order to do so, the ECHO command case on the Artemis was modified to prepend and echo the received string with ‘Artemis said: [sent message]‘.
+            </p>
+
+            <img class="img-fluid" src="imgs/lab2/echo_N.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab2/t1.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <img class="img-fluid" src="imgs/lab2/t1_N.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h6> Task 2: </h6>
+            <p>The second task was to create a new command GET_TIME_MILLIS, that causes the Artemis to retrieve the current time in milliseconds from the start of the program on the Artemis, and updates the string characteristic with it. The Notebook would receive the updated string from this characteristic. Including the GET_TIME_MILLIS command in the enumeration for both the Notebook and the Artemis enabled it to be generated and recognized respectively. 
+            </p>
+
+            <img class="img-fluid" src="imgs/lab2/millis_N.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab2/t2.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <img class="img-fluid" src="imgs/lab2/t2_N.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+
+            <h6> Task 3: </h6>
+            <p>The third task was to create a callback function for an event listener using ArtemisBLEController member functions in the Notebook. Using the start_notify function we begin listening for updates to the string characteristic, and in the callback function we convert the byte array to a string and print it. As we are only waiting to receive a single value, we then stop monitoring updates to the string characteristic. 
+            </p>
+
+            <img class="img-fluid" src="imgs/lab2/t3.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <img class="img-fluid" src="imgs/lab2/t3_N.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h6> Task 4: </h6>
+            <p>The fourth task was to create a command GET_TEMP_5s (in the same manner as task 2) that elicits 5 timestamped temperature readings, each separated by a one second delay, from the Artemis. Rather than waiting to collect multiple readings and then updating the characteristic as a single string consisting of multiple readings, I chose to update the characteristic as soon as a new reading was taken, allowing the Notebook to immediately be notified and receive the new value. The value is split into timestamp and temperature segments and embedded in a printed string. Keeping track of how many values have been received, the notification handler is disabled once all 5 have been.  
+            </p>
+
+            <img class="img-fluid" src="imgs/lab2/temp_N.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab2/t4.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h6> Task 5: </h6>
+            <p>The fifth task is functionally identical to the fourth, but we remove the rate limiting delay of the timestamped temperature readings, and do not place an expected cap on the number of received readings. Instead, in the GET_TEMP_5s_RAPID command we use a conditional that checks if 5 seconds has passed between the enabling of the notification handler, and the newest reading, before disabling notifications for string updates. Using the same format for new readings as task four, we consistently receive ~90 readings in 5 seconds. If we were to fill each string update up to the characteristic limit, the number of received samplings would be far higher, but slightly more convoluted to process in the Notebook.  
+            </p>
+
+            <img class="img-fluid" src="imgs/lab2/rapid_N.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab2/t5_A.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab2/t5.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <img class="img-fluid" src="imgs/lab2/t5_2.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h6> Task 6: </h6>
+            <p>At 150Hz, we are generating a new reading approximately every 6.67mS. With each reading of 16 bits, for 5 seconds, this imputes 12000 total bits to be stored for the grouping. If no compression or encoding is applied to reduce length of each reading at the expense of range or resolution, we have enough RAM for 384*1024*8/12000 = 262.144 groups of 5 seconds of readings. Note that the max characteristic value for the ArduinoBLE is 255 bytes and thus only 127.5 readings, less than one second worth, would be communicable at a time. This is also, unrealistically, disregarding any RAM usage from the script itself or background tasks. 
+            </p>
+
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <p>Having concluded this lab, the commands as enumerated on both the Artemis and the Notebook are as follows:</p>
+            <img class="img-fluid" src="imgs/lab2/enum_N.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            <img class="img-fluid" src="imgs/lab2/enum_A.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
 
 
         </div>
