@@ -60,6 +60,90 @@ static long previousMillis = 0;
 unsigned long currentMillis = 0;
 //////////// Global Variables ////////////
 
+
+
+///////////// Testing TOF ///////////////
+
+void
+read_data()
+{
+    // Query if the characteristic value has been written by another BLE device
+    if (rx_characteristic_string.written()) {
+        handle_command();
+    }
+}
+
+void sendReading(int distance, int time){
+
+  char dst_arr[MAX_MSG_SIZE];
+  sprintf(dst_arr, "%d", distance);
+
+  char time_arr[MAX_MSG_SIZE];
+  sprintf(time_arr, "%d", time);
+
+  tx_estring_value.clear();
+  tx_estring_value.append(dst_arr);
+  tx_estring_value.append("|");
+  tx_estring_value.append(time_arr);
+  tx_characteristic_string.writeValue(tx_estring_value.c_str());
+
+  Serial.print("Sent back: ");
+  Serial.println(tx_estring_value.c_str());
+
+}
+
+void newReading(){
+
+    int start_time = millis();
+    distanceSensor.startRanging(); //Write configuration bytes to initiate measurement
+    while (!distanceSensor.checkForDataReady())
+    {
+      delay(1);
+    }
+    int distance = distanceSensor.getDistance(); //Get the result of the measurement from the sensor
+    distanceSensor.clearInterrupt();
+    distanceSensor.stopRanging();
+
+    int ranging_time = millis() - start_time;
+    Serial.print("Ranging Time (mS): ");
+    Serial.print(ranging_time);
+
+    Serial.print(" Distance(mm): ");
+    Serial.print(distance);
+
+    Serial.println();
+
+    sendReading(distance, ranging_time);
+}
+
+void readAndSend50TOF(){
+    for (int location = 0; location < 10; location++){
+    
+      for (int sample = 0; sample < 50; sample++){
+        newReading();
+      }
+
+      Serial.println("");
+      Serial.println("\\");
+      Serial.println(location*15 + "mm test in 10 seconds");
+      Serial.println("\\");
+      Serial.println("");
+      delay(7000);
+      Serial.println("\\");
+      Serial.println(location*15 + "mm test in 3 seconds");
+      Serial.println("\\");
+      delay(3000);
+      Serial.println("");
+    
+    }
+
+    Serial.println("");
+    Serial.println("Complete");
+    Serial.println("");
+}
+
+//////////////// Testing TOF /////////////////
+
 enum CommandTypes
 {
     PING,
@@ -70,7 +154,8 @@ enum CommandTypes
     SET_VEL,
     GET_TIME_MILLIS,
     GET_TEMP_5s,
-    GET_TEMP_5s_RAPID
+    GET_TEMP_5s_RAPID,
+    TEST_TOF
 };
 
 void
@@ -247,6 +332,11 @@ handle_command()
             break;
           }
 
+        case TEST_TOF:{
+          readAndSend50TOF();
+          break;
+        }
+
 
         /* 
          * The default case may not capture all types of invalid commands.
@@ -283,6 +373,9 @@ setup()
                                             //  - minimum:  1 bit
 
     analogWriteResolution(RESOLUTION_BITS);   // match resolution for analogWrite
+
+    // set TOF to short distance
+    distanceSensor.setDistanceModeShort();
 
     BLE.begin();
 
@@ -326,6 +419,8 @@ setup()
     Serial.println(BLE.address());
 
     BLE.advertise();
+
+    
 }
 
 void
@@ -347,37 +442,6 @@ write_data()
 }
 
 void
-read_data()
-{
-    // Query if the characteristic value has been written by another BLE device
-    if (rx_characteristic_string.written()) {
-        handle_command();
-    }
-}
-
-void read_TOF(){
-    distanceSensor.startRanging(); //Write configuration bytes to initiate measurement
-  while (!distanceSensor.checkForDataReady())
-  {
-    delay(1);
-  }
-  int distance = distanceSensor.getDistance(); //Get the result of the measurement from the sensor
-  distanceSensor.clearInterrupt();
-  distanceSensor.stopRanging();
-
-  Serial.print("Distance(mm): ");
-  Serial.print(distance);
-
-  float distanceInches = distance * 0.0393701;
-  float distanceFeet = distanceInches / 12.0;
-
-  Serial.print("\tDistance(ft): ");
-  Serial.print(distanceFeet, 2);
-
-  Serial.println();
-}
-
-void
 loop()
 {
     // Listen for connections
@@ -388,16 +452,21 @@ loop()
         Serial.print("Connected to: ");
         Serial.println(central.address());
 
+    //delay(2000);
+
+    // create an array for storing a string concatenation of distance and ranging time
+     
+
         // While central is connected
         while (central.connected()) {
-            // Send data
+            //Send data
             write_data();
 
-            // Read data
+            //Read data
             read_data();
 
-            // read TOF value
-            read_TOF();
+            // read 50 TOF values
+            //readAndSend50TOF();
         }
 
         Serial.println("Disconnected");

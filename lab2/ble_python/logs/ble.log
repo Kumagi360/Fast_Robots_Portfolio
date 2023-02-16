@@ -402,3 +402,20 @@
 2023-02-14 19:41:36,317 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
 2023-02-14 19:41:36,326 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
 2023-02-14 19:41:36,327 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
+2023-02-15 14:56:19,560 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-02-15 14:56:19,560 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.3.0-x86_64-i386-64bit
+2023-02-15 14:56:19,561 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-15 14:56:22,173 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-02-15 14:58:52,704 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-15 14:58:52,714 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-15 14:58:52,716 | MainThread   | [INFO    ] | exit_handler        |: Gracefully Exiting
+2023-02-15 15:13:23,459 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-02-15 15:13:23,459 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.3.0-x86_64-i386-64bit
+2023-02-15 15:13:23,460 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-15 15:13:26,101 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-02-15 15:16:25,570 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-15 15:16:35,268 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-02-15 15:16:37,789 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-02-15 15:19:50,551 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-15 15:19:50,576 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-15 15:19:50,577 | MainThread   | [INFO    ] | exit_handler        |: Gracefully Exiting
