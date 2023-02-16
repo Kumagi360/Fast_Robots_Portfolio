@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lab 3</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imgs/about.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: MyPortfolio - v4.10.0
+  * Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Navbar ======= -->
+
+  <main id="main">
+
+    <section class="section">
+      <div class="container">
+        <div class="row mb-4 p-5 align-items-center">
+          <a class="navbar-brand" href="index.html">Back to Portfolio</a>
+          <p> </p>
+          <h1>Lab 3</h1>
+
+          <p> </p>
+          <h4>Objective: </h4>
+          <p>
+            In this lab, I learned to manipulate, send, receive, and visualize data streams from multiple TOF sensors. In doing so, I exercised soldering skills, read datasheets, and improved the speed of parsing on-vehicle sensor streams with low delay over BLE.
+          </p>
+
+          <h4>TOFs: </h4>
+          <p>The rationale for having 2 TOF sensors is to thoughtfully place them in such a manner as to maximise driving capabilities. I initially narrowed my approach to either both TOFs mounted at the front of the vehicle, and to drive in a slalom/sweeping motion, or to place one in front and one pointed perpendicular to travel out of one side. I have opted for the second approach as it would be less complicated to enable straight-line obstacle avoidance (likely the most common use case for the TOFs), and for more effective localization and mapping. However, given the narrow field of view of the TOFs, 27 degrees as per the datasheet, this placement is vulnerable to obstacles outside this angle either vertically or horizontally. 
+          </p>
+
+          <h4>Wiring:</h4>
+          <p>The wiring of the system is straightforward, with the two TOF sensors sharing 3.3V, GND, and the I2C lines SDA and SCL through a Qwiic multiport through to the Qwiic connector on the Artemis Nano. In order to interact with both TOFs simultaneously, I also wired their XSHUT pins to A1 and A2 respectively on the Nano, such that I could temporarily take one TOF off the I2C lines in order to change the other’s address to be non-identical. Below is a crude wiring diagram for the system. Unused pins have not been labelled. 
+          
+          </p>
+
+
+          <img class="img-fluid" src="imgs/lab3/wiringD.jpg">
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <p>
+            Below is an image of the complete system.
+          </p>
+
+          <img class="img-fluid" src="imgs/lab3/wired.jpg">
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          
+          <h3>Tasks: </h3>
+          <h4>I2C: </h4>
+          <p>Running the Wire_I2C example script, I found both the TOF sensors to have the same I2C address of 0x29. While this was different to the 0x52 default in the data sheet, this likely the consequence of a single bit shift in the communication protocol. As explained above, the solution to working both simultaneously is to change the address of one in setup.
+            </p>
+
+            <img class="img-fluid" src="imgs/lab3/add.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+
+            <h4>Single TOF Sensor Mode Testing:</h4>
+            <p>I chose to test the sensor mode ‘DistanceShort’, with a maximum expected range of 1.3 metres. I chose this for two reasons. Firstly, I believe having a high degree of accuracy within this range would be essential to optimal obstacle avoidance as, given the small and agile nature of the robot, manoeuvres can be made closer to obstacles than less agile robots. The more important reason was the datasheet’s claim that this mode is far more resilient to changing ambient light conditions than its alternatives. This is important as we may not always have the ability to adjust ambient lighting, in a common workspace or outdoors for example. The datasheet claims the maximum viewable distance for the short distance mode TOFs in dark and under strong ambient light is roughly equal at ~135cm, whereas the medium and long distance drop off massively from 290cm to 76cm and 360cm to 73cm. While in some conditions these would offer greater localisation capabilities, this level of variability would be difficult to account for in all situations, and thus is best avoided. 
+            </p>
+              <img class="img-fluid" src="imgs/lab3/modes.png">
+              <p> </p>
+              <p> </p>
+              <p> </p>
+              
+              <p>
+              I tested the sensor mode for both its claims of maximum distance, and resilience to ambient light. I also tested the ranging time and repeatability under changing measured distance to determine what effect the mode would have on sampling delay. 
+              
+              To test, I placed a measuring tape on the floor, leading up to a flat panel on one end, and the system mounted sturdily on a perpendicular mobile surface on the other end. By taking 50 samples at a given distance, then moving 15 centimetres closer/further from the flat panel, I collected data on a single TOF sensor at 14 distances from 5 centimetres to 200 centimetres inclusive. By relaying through bluetooth, I would be able to parse and visualise the data in a Jupiter Notebook using Numpy and Matplotlib. 
+              
+            </p>
+            <img class="img-fluid" src="imgs/lab3/light.jpg">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            
+            <p>
+              
+              To script this, I made a new command that read 50 TOF samples, relayed them individually to the Jupiter Notebook for parsing, then gave me 10 seconds to move the system to the next distance marker. Repeating 14 times, this allowed all my data to be collected in under 5 minutes. Below are snippets of the code to read TOF data (newReading()), send data (sendReading()) , and grant time for moving the setup (readAndSend50TOF()).
+              
+            </p>
+            <img class="img-fluid" src="imgs/lab3/exp_B.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/exp_C.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/exp_A.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            
+            <p>
+              
+              The results are summarised in the graphs below. While the legend isn’t very clear, the graph is telling. Up to ~1500 milimeters, in strong ambient light conditions, all 50 distance samples are highly similar and accurate to the true distance. After that point, the samples become more variable, and diverge slightly more from the ground truth. The maximum standard deviation for any distance was 1800mm with 32mm of deviation. I conclude this sensor is usable up to the measured 200 centimetres in most situations. The ranging time was as expected, with an average of ~53mS up to ~1350 millimeters , when it became a much quicker ~32mS. This is most likely a function of the precision sampling being done in the short distance mode up to that distance, as prescribed in the datasheet.
+              
+            </p>
+            <img class="img-fluid" src="imgs/lab3/L_D.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/L_T.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            
+            <p>
+              
+              The dark testing is similar, with a non-negligible increase in the tightness of sampling at longer distances, accurate up to ~1750 millimetres as opposed to the ~1500 millimetres in the light testing. The number of samples taken decreased the likelihood this was the result of an experimental error, and hence I find the sensor functions more accurately and repeatably in the dark than under strong ambient light. The ranging times were effectively the same as in ambient light testing. 
+              
+            </p>
+            <img class="img-fluid" src="imgs/lab3/dark.jpg">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/D_D.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/D_T.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/DDD.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h4>Two TOF Sensor Testing: </h4>
+            <p>As explained prior, the method to use both TOFs at once, is to drive the XSHUT pin on one low while the other has its I2C address changed. We can then address them both individually and concurrently. I changed the address of one to 0x32, on guidance from TA Anya’s former lab3 page. Wiring as per the diagram from earlier, and placing pointing perpendicularly as they will on the car, I repeated the experiment structure from earlier under strong ambient light to produce the following graphs:
+
+            </p>
+            <img class="img-fluid" src="imgs/lab3/exp_2T_2.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/p2B.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            
+            <p>
+              
+              We see that while the distance from the front sensor was being uniformly increased, the proximity to my bed and a walkway caused the other TOF to read varying distances, again very precisely within the aforementioned range. In order to account for the additional TOF sensor, I simply amended the script read, send, and parsing scripts on both ends as follows:
+              
+            </p>
+            <img class="img-fluid" src="imgs/lab3/pB_A.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/DD.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            
+
+            <h4> Two TOF Speed:</h4>
+            <p>In order to maximise the rate of execution for the two TOFs, I changed the Artemis-side script to avoid the busy wait condition during ranging given in the example script. Instead, I simply run the checkForDataReady() method of the distanceSensor class on each sensor, and poll for new samples. As shown below, there were many iterations of the loop when neither sensor had a new sample, and so only the timestamp was printed. From this we see the execution time of the loop was ~7 mS, with a new pair of sensor readings approximately every ~50 mS separated by ~15mS. I believe the current limiting factor in the speed of this loop is the checkForDataReady function itself, and the time it takes to Serial print the current time/ new samples. I conclude this as there are no other lines in the loop that could consume excess time. 
+
+            </p>
+
+            <img class="img-fluid" src="imgs/lab3/TSC.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/TS.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+
+            <h4> Two TOF Readings: </h4>
+            <p>The benefit of the new reading method for the two TOFs is that data can be collected relatively asynchronously, and not halt the script in between. Changing the data sent from the Artemis to the Notebook to include current time rather than ranging time, and simplifying the visualisation script, yielded this graph:
+              
+            </p>
+
+            <img class="img-fluid" src="imgs/lab3/tvd.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/2TCC.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/L.png">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+        </div>
+      </div>
+
+    </section>
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="mb-1">&copy; Kunal Gupta, 2023</p>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyPortfolio
+          -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+        <div class="col-sm-6 social text-md-end">
+          <a href="https://www.linkedin.com/in/kunalgupta360/"><span class="bi bi-linkedin"></span></a>
+          <a href="https://github.com/Kumagi360/Fast_Robots_Portfolio"><span class="bi bi-github"></span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

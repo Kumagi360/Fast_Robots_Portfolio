@@ -32,9 +32,10 @@
 #define SHUTDOWN_PIN 2
 #define INTERRUPT_PIN 3
 
-SFEVL53L1X distanceSensor;
 //Uncomment the following line to use the optional shutdown and interrupt pins.
-//SFEVL53L1X distanceSensor(Wire, SHUTDOWN_PIN, INTERRUPT_PIN);
+SFEVL53L1X distanceSensor1(Wire, SHUTDOWN_PIN, INTERRUPT_PIN);
+
+SFEVL53L1X distanceSensor2(Wire, SHUTDOWN_PIN, INTERRUPT_PIN);
 
 ///////////  TOF //////////////////
 
@@ -62,7 +63,7 @@ unsigned long currentMillis = 0;
 
 
 
-///////////// Testing TOF ///////////////
+///////////// Testing SINGLE TOF ///////////////
 
 void
 read_data()
@@ -73,7 +74,7 @@ read_data()
     }
 }
 
-void sendReading(int distance, int time){
+void sendReading(int distance, int time, int sensorN){
 
   char dst_arr[MAX_MSG_SIZE];
   sprintf(dst_arr, "%d", distance);
@@ -81,10 +82,15 @@ void sendReading(int distance, int time){
   char time_arr[MAX_MSG_SIZE];
   sprintf(time_arr, "%d", time);
 
+  char sensorN_arr[MAX_MSG_SIZE];
+  sprintf(sensorN_arr, "%d", sensorN);
+
   tx_estring_value.clear();
   tx_estring_value.append(dst_arr);
   tx_estring_value.append("|");
   tx_estring_value.append(time_arr);
+  tx_estring_value.append("|");
+  tx_estring_value.append(sensorN_arr);
   tx_characteristic_string.writeValue(tx_estring_value.c_str());
 
   Serial.print("Sent back: ");
@@ -95,25 +101,46 @@ void sendReading(int distance, int time){
 void newReading(){
 
     int start_time = millis();
-    distanceSensor.startRanging(); //Write configuration bytes to initiate measurement
-    while (!distanceSensor.checkForDataReady())
+    distanceSensor1.startRanging(); //Write configuration bytes to initiate measurement
+    while (!distanceSensor1.checkForDataReady())
     {
       delay(1);
     }
-    int distance = distanceSensor.getDistance(); //Get the result of the measurement from the sensor
-    distanceSensor.clearInterrupt();
-    distanceSensor.stopRanging();
+    int distance = distanceSensor1.getDistance(); //Get the result of the measurement from the sensor
+    distanceSensor1.clearInterrupt();
+    distanceSensor1.stopRanging();
 
     int ranging_time = millis() - start_time;
-    Serial.print("Ranging Time (mS): ");
+    Serial.print("TOF 1 Ranging Time (mS): ");
     Serial.print(ranging_time);
 
-    Serial.print(" Distance(mm): ");
+    Serial.print(" TOF 1 Distance(mm): ");
     Serial.print(distance);
 
     Serial.println();
 
-    sendReading(distance, ranging_time);
+    sendReading(distance, ranging_time, 1);
+
+    start_time = millis();
+    distanceSensor2.startRanging(); //Write configuration bytes to initiate measurement
+    while (!distanceSensor2.checkForDataReady())
+    {
+      delay(1);
+    }
+    distance = distanceSensor2.getDistance(); //Get the result of the measurement from the sensor
+    distanceSensor2.clearInterrupt();
+    distanceSensor2.stopRanging();
+
+    ranging_time = millis() - start_time;
+    Serial.print("TOF 2 Ranging Time (mS): ");
+    Serial.print(ranging_time);
+
+    Serial.print(" TOF 2 Distance(mm): ");
+    Serial.print(distance);
+
+    Serial.println();
+
+    sendReading(distance, ranging_time, 2);
 }
 
 void readAndSend50TOF(){
@@ -144,6 +171,82 @@ void readAndSend50TOF(){
 
 //////////////// Testing TOF /////////////////
 
+//////////////// Timed TOF ///////////////////
+
+void continuous5SRead(){
+  distanceSensor1.startRanging();
+  distanceSensor2.startRanging();
+  int start_time = millis();
+
+  while(millis() - start_time < 5000){
+    if (distanceSensor1.checkForDataReady())
+    {
+      int ONEdistance = distanceSensor1.getDistance(); 
+      distanceSensor1.clearInterrupt();
+      distanceSensor1.stopRanging();
+      Serial.print("At ");
+      Serial.print(millis());
+      Serial.print(" TOF ONE reads:");
+      Serial.println(ONEdistance);
+      sendReading(ONEdistance, millis(), 1);
+      distanceSensor1.startRanging();
+    }
+
+    if (distanceSensor2.checkForDataReady())
+    {
+      int TWOdistance = distanceSensor2.getDistance(); 
+      distanceSensor2.clearInterrupt();
+      distanceSensor2.stopRanging();
+      Serial.print("At ");
+      Serial.print(millis());
+      Serial.print(" TOF TWO reads:");
+      Serial.println(TWOdistance);
+      sendReading(TWOdistance, millis(), 2);
+      distanceSensor2.startRanging();
+    }
+}
+
+  }
+  
+
+
+
+/////////////// Timed TOF ////////////////////
+
+void readTimedTOF(){
+
+  Serial.print("Current time: ");
+  Serial.println(millis());
+
+    if (distanceSensor1.checkForDataReady())
+    {
+      int ONEdistance = distanceSensor1.getDistance(); 
+      distanceSensor1.clearInterrupt();
+      distanceSensor1.stopRanging();
+      Serial.print("At ");
+      Serial.print(millis());
+      Serial.print(" TOF ONE reads:");
+      Serial.println(ONEdistance);
+      distanceSensor1.startRanging();
+    }
+
+    if (distanceSensor2.checkForDataReady())
+    {
+      int TWOdistance = distanceSensor2.getDistance(); 
+      distanceSensor2.clearInterrupt();
+      distanceSensor2.stopRanging();
+      Serial.print("At ");
+      Serial.print(millis());
+      Serial.print(" TOF TWO reads:");
+      Serial.println(TWOdistance);
+      distanceSensor2.startRanging();
+    }
+
+}
+
+
+
+
 enum CommandTypes
 {
     PING,
@@ -155,7 +258,8 @@ enum CommandTypes
     GET_TIME_MILLIS,
     GET_TEMP_5s,
     GET_TEMP_5s_RAPID,
-    TEST_TOF
+    TEST_TOF,
+    TIMED_TOF
 };
 
 void
@@ -337,6 +441,11 @@ handle_command()
           break;
         }
 
+        case TIMED_TOF:{
+          continuous5SRead();
+          break;          
+        }
+
 
         /* 
          * The default case may not capture all types of invalid commands.
@@ -355,16 +464,29 @@ setup()
 {
     Wire.begin();
 
+    pinMode(2, OUTPUT);
+    digitalWrite(2, LOW);
+    distanceSensor1.setI2CAddress(0x32);
+    digitalWrite(2, HIGH);
+
     Serial.begin(115200);
     Serial.println("VL53L1X Qwiic Test");
 
-    if (distanceSensor.begin() != 0) //Begin returns 0 on a good init
+    if (distanceSensor1.begin() != 0) //Begin returns 0 on a good init
     {
       Serial.println("Sensor failed to begin. Please check wiring. Freezing...");
       while (1)
         ;
     }
-    Serial.println("Sensor online!");
+    Serial.println("Sensor 1 online!");
+
+   if (distanceSensor2.begin() != 0) //Begin returns 0 on a good init
+    {
+      Serial.println("Sensor failed to begin. Please check wiring. Freezing...");
+      while (1)
+        ;
+    }
+    Serial.println("Sensor 2 online!");
 
     analogReadResolution(RESOLUTION_BITS);    // set the resolution of analogRead results
                                             //  - maximum: 16 bits (padded with trailing zeroes)
@@ -375,7 +497,9 @@ setup()
     analogWriteResolution(RESOLUTION_BITS);   // match resolution for analogWrite
 
     // set TOF to short distance
-    distanceSensor.setDistanceModeShort();
+    distanceSensor1.setDistanceModeShort();
+
+    distanceSensor2.setDistanceModeShort();
 
     BLE.begin();
 
@@ -455,18 +579,57 @@ loop()
     //delay(2000);
 
     // create an array for storing a string concatenation of distance and ranging time
-     
+
+        distanceSensor1.startRanging();
+        distanceSensor2.startRanging();
+
+        
 
         // While central is connected
         while (central.connected()) {
+
+          //continuous5SRead();
+          
+          // distanceSensor1.startRanging(); 
+          // distanceSensor2.startRanging(); 
+            //readAndSendTimed();
+
             //Send data
             write_data();
 
             //Read data
             read_data();
 
+
+            //readTimedTOF();
+  
             // read 50 TOF values
             //readAndSend50TOF();
+
+              // Serial.println(millis() + " is the current time");
+              // if (ONEdistance != -1 and TWOdistance != -1){
+              //   Serial.println(ONEdistance + " is TOF ONE distance (mm)");
+              //   Serial.println(TWOdistance + " is TOF TWO distance (mm)");
+              //   ONEdistance = -1;
+              //   TWOdistance = -1;
+              //   distanceSensor1.startRanging();
+              //   distanceSensor2.startRanging();
+              // }
+              
+              // if (distanceSensor1.checkForDataReady())
+              // {
+              //   ONEdistance = distanceSensor1.getDistance(); 
+              //   distanceSensor1.clearInterrupt();
+              //   distanceSensor1.stopRanging();
+              // }
+
+              // if (distanceSensor2.checkForDataReady())
+              // {
+              //   TWOdistance = distanceSensor2.getDistance(); 
+              //   distanceSensor2.clearInterrupt();
+              //   distanceSensor2.stopRanging();
+              // }
+
         }
 
         Serial.println("Disconnected");

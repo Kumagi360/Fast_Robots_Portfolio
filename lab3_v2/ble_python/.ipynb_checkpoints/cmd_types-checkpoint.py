@@ -11,3 +11,4 @@ class CMD(Enum):
     GET_TEMP_5s = 7
     GET_TEMP_5s_RAPID = 8
     TEST_TOF = 9
+    TIMED_TOF = 10
