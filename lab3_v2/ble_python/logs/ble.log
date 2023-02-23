@@ -421,3 +421,6 @@
 2023-02-16 05:48:04,219 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
 2023-02-16 05:48:06,686 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
 2023-02-16 05:51:25,140 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-02-16 08:24:55,203 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-02-16 08:24:55,210 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-02-16 08:24:55,211 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device

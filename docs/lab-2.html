@@ -69,7 +69,7 @@
           <p>Having read through the Arduino and Python codebases, and documentation for BLE, I proceeded to print the MAC address for my Artemis board. 
             </p>
 
-            <img class="img-fluid" src="imgs/lab2/MAC.png">
+            <img class="img-fluid" src="imgs/lab2/MAC.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -78,7 +78,7 @@
             Updating the MAC address, and replacing the default UUID with a new generated one, in connections.yaml enabled the Juypter Notebook to link to the Artemis board over Bluetooth.
           </p>
 
-            <img class="img-fluid" src="imgs/lab2/connections.png">
+            <img class="img-fluid" src="imgs/lab2/connections.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -89,42 +89,42 @@
             </p>
 
             <h6>Verification of Connection (Notebook side): </h6>
-            <img class="img-fluid" img src="imgs/lab2/connected.png" >
+            <img class="img-fluid" img src="imgs/lab2/connected.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
             <h6>Verification of Connection (Artemis side): </h6>
-            <img class="img-fluid" src="imgs/lab2/connect_N.png">
+            <img class="img-fluid" src="imgs/lab2/connect_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
 
             <h6>Verification of data received from Artemis: </h6>
-            <img class="img-fluid" src="imgs/lab2/receive.png">
+            <img class="img-fluid" src="imgs/lab2/receive.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
             <h6>Verification of command sent to Artemis (Notebook side): </h6>
-            <img class="img-fluid" src="imgs/lab2/send.png">
+            <img class="img-fluid" src="imgs/lab2/send.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
             <h6>Verification of command sent to Artemis (Artemis side): </h6>
-            <img class="img-fluid" src="imgs/lab2/send_N.png">
+            <img class="img-fluid" src="imgs/lab2/send_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
             <h6>Verification of disconnect from Artemis (Notebook side): </h6>
-            <img class="img-fluid" src="imgs/lab2/disc.png">
+            <img class="img-fluid" src="imgs/lab2/disc.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
             <h6>Verification of disconnect from Artemis (Artemis side): </h6>
-            <img class="img-fluid" src="imgs/lab2/disc_N.png">
+            <img class="img-fluid" src="imgs/lab2/disc_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -135,16 +135,16 @@
             <p>The first task was to use the provided ECHO command to send a string to the Artemis, and receive back a modification of the string. In order to do so, the ECHO command case on the Artemis was modified to prepend and echo the received string with ‘Artemis said: [sent message]‘.
             </p>
 
-            <img class="img-fluid" src="imgs/lab2/echo_N.png">
+            <img class="img-fluid" src="imgs/lab2/echo_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab2/t1.png">
+            <img class="img-fluid" src="imgs/lab2/t1.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
-            <img class="img-fluid" src="imgs/lab2/t1_N.png">
+            <img class="img-fluid" src="imgs/lab2/t1_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -153,16 +153,16 @@
             <p>The second task was to create a new command GET_TIME_MILLIS, that causes the Artemis to retrieve the current time in milliseconds from the start of the program on the Artemis, and updates the string characteristic with it. The Notebook would receive the updated string from this characteristic. Including the GET_TIME_MILLIS command in the enumeration for both the Notebook and the Artemis enabled it to be generated and recognized respectively. 
             </p>
 
-            <img class="img-fluid" src="imgs/lab2/millis_N.png">
+            <img class="img-fluid" src="imgs/lab2/millis_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab2/t2.png">
+            <img class="img-fluid" src="imgs/lab2/t2.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
-            <img class="img-fluid" src="imgs/lab2/t2_N.png">
+            <img class="img-fluid" src="imgs/lab2/t2_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -172,11 +172,11 @@
             <p>The third task was to create a callback function for an event listener using ArtemisBLEController member functions in the Notebook. Using the start_notify function we begin listening for updates to the string characteristic, and in the callback function we convert the byte array to a string and print it. As we are only waiting to receive a single value, we then stop monitoring updates to the string characteristic. 
             </p>
 
-            <img class="img-fluid" src="imgs/lab2/t3.png">
+            <img class="img-fluid" src="imgs/lab2/t3.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
-            <img class="img-fluid" src="imgs/lab2/t3_N.png">
+            <img class="img-fluid" src="imgs/lab2/t3_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -185,12 +185,12 @@
             <p>The fourth task was to create a command GET_TEMP_5s (in the same manner as task 2) that elicits 5 timestamped temperature readings, each separated by a one second delay, from the Artemis. Rather than waiting to collect multiple readings and then updating the characteristic as a single string consisting of multiple readings, I chose to update the characteristic as soon as a new reading was taken, allowing the Notebook to immediately be notified and receive the new value. The value is split into timestamp and temperature segments and embedded in a printed string. Keeping track of how many values have been received, the notification handler is disabled once all 5 have been.  
             </p>
 
-            <img class="img-fluid" src="imgs/lab2/temp_N.png">
+            <img class="img-fluid" src="imgs/lab2/temp_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab2/t4.png">
+            <img class="img-fluid" src="imgs/lab2/t4.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -199,21 +199,21 @@
             <p>The fifth task is functionally identical to the fourth, but we remove the rate limiting delay of the timestamped temperature readings, and do not place an expected cap on the number of received readings. Instead, in the GET_TEMP_5s_RAPID command we use a conditional that checks if 5 seconds has passed between the enabling of the notification handler, and the newest reading, before disabling notifications for string updates. Using the same format for new readings as task four, we consistently receive ~90 readings in 5 seconds. If we were to fill each string update up to the characteristic limit, the number of received samplings would be far higher, but slightly more convoluted to process in the Notebook.  
             </p>
 
-            <img class="img-fluid" src="imgs/lab2/rapid_N.png">
+            <img class="img-fluid" src="imgs/lab2/rapid_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab2/t5_A.png">
+            <img class="img-fluid" src="imgs/lab2/t5_A.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab2/t5.png">
+            <img class="img-fluid" src="imgs/lab2/t5.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
-            <img class="img-fluid" src="imgs/lab2/t5_2.png">
+            <img class="img-fluid" src="imgs/lab2/t5_2.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -227,11 +227,11 @@
             <p> </p>
 
             <p>Having concluded this lab, the commands as enumerated on both the Artemis and the Notebook are as follows:</p>
-            <img class="img-fluid" src="imgs/lab2/enum_N.png">
+            <img class="img-fluid" src="imgs/lab2/enum_N.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
-            <img class="img-fluid" src="imgs/lab2/enum_A.png">
+            <img class="img-fluid" src="imgs/lab2/enum_A.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>

@@ -64,7 +64,7 @@
           </p>
 
 
-          <img class="img-fluid" src="imgs/lab3/wiringD.jpg">
+          <img class="img-fluid" src="imgs/lab3/wiringD.jpg" style="width: 50%; height: 50%">
           <p> </p>
           <p> </p>
           <p> </p>
@@ -73,7 +73,7 @@
             Below is an image of the complete system.
           </p>
 
-          <img class="img-fluid" src="imgs/lab3/wired.png">
+          <img class="img-fluid" src="imgs/lab3/wired.png" style="width: 50%; height: 50%">
           <p> </p>
           <p> </p>
           <p> </p>
@@ -84,7 +84,7 @@
           <p>Running the Wire_I2C example script, I found both the TOF sensors to have the same I2C address of 0x29. While this was different to the 0x52 default in the data sheet, this likely the consequence of a single bit shift in the communication protocol. As explained above, the solution to working both simultaneously is to change the address of one in setup.
             </p>
 
-            <img class="img-fluid" src="imgs/lab3/add.png">
+            <img class="img-fluid" src="imgs/lab3/add.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -93,7 +93,7 @@
             <h4>Single TOF Sensor Mode Testing:</h4>
             <p>I chose to test the sensor mode ‘DistanceShort’, with a maximum expected range of 1.3 metres. I chose this for two reasons. Firstly, I believe having a high degree of accuracy within this range would be essential to optimal obstacle avoidance as, given the small and agile nature of the robot, manoeuvres can be made closer to obstacles than less agile robots. The more important reason was the datasheet’s claim that this mode is far more resilient to changing ambient light conditions than its alternatives. This is important as we may not always have the ability to adjust ambient lighting, in a common workspace or outdoors for example. The datasheet claims the maximum viewable distance for the short distance mode TOFs in dark and under strong ambient light is roughly equal at ~135cm, whereas the medium and long distance drop off massively from 290cm to 76cm and 360cm to 73cm. While in some conditions these would offer greater localisation capabilities, this level of variability would be difficult to account for in all situations, and thus is best avoided. 
             </p>
-              <img class="img-fluid" src="imgs/lab3/modes.png">
+              <img class="img-fluid" src="imgs/lab3/modes.png" style="width: 50%; height: 50%">
               <p> </p>
               <p> </p>
               <p> </p>
@@ -104,7 +104,7 @@
               To test, I placed a measuring tape on the floor, leading up to a flat panel on one end, and the system mounted sturdily on a perpendicular mobile surface on the other end. By taking 50 samples at a given distance, then moving 15 centimetres closer/further from the flat panel, I collected data on a single TOF sensor at 14 distances from 5 centimetres to 200 centimetres inclusive. By relaying through bluetooth, I would be able to parse and visualise the data in a Jupiter Notebook using Numpy and Matplotlib. 
               
             </p>
-            <img class="img-fluid" src="imgs/lab3/light.png">
+            <img class="img-fluid" src="imgs/lab3/light.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -114,17 +114,17 @@
               To script this, I made a new command that read 50 TOF samples, relayed them individually to the Jupiter Notebook for parsing, then gave me 10 seconds to move the system to the next distance marker. Repeating 14 times, this allowed all my data to be collected in under 5 minutes. Below are snippets of the code to read TOF data (newReading()), send data (sendReading()) , and grant time for moving the setup (readAndSend50TOF()).
               
             </p>
-            <img class="img-fluid" src="imgs/lab3/exp_B.png">
+            <img class="img-fluid" src="imgs/lab3/exp_B.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/exp_C.png">
+            <img class="img-fluid" src="imgs/lab3/exp_C.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/exp_A.png">
+            <img class="img-fluid" src="imgs/lab3/exp_A.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -134,12 +134,12 @@
               The results are summarised in the graphs below. While the legend isn’t very clear, the graph is telling. Up to ~1500 milimeters, in strong ambient light conditions, all 50 distance samples are highly similar and accurate to the true distance. After that point, the samples become more variable, and diverge slightly more from the ground truth. The maximum standard deviation for any distance was 1800mm with 32mm of deviation. I conclude this sensor is usable up to the measured 200 centimetres in most situations. The ranging time was as expected, with an average of ~53mS up to ~1350 millimeters , when it became a much quicker ~32mS. This is most likely a function of the precision sampling being done in the short distance mode up to that distance, as prescribed in the datasheet.
               
             </p>
-            <img class="img-fluid" src="imgs/lab3/L_D.png">
+            <img class="img-fluid" src="imgs/lab3/L_D.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/L_T.png">
+            <img class="img-fluid" src="imgs/lab3/L_T.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -149,22 +149,22 @@
               The dark testing is similar, with a non-negligible increase in the tightness of sampling at longer distances, accurate up to ~1750 millimetres as opposed to the ~1500 millimetres in the light testing. The number of samples taken decreased the likelihood this was the result of an experimental error, and hence I find the sensor functions more accurately and repeatably in the dark than under strong ambient light. The ranging times were effectively the same as in ambient light testing. 
               
             </p>
-            <img class="img-fluid" src="imgs/lab3/dark.png">
+            <img class="img-fluid" src="imgs/lab3/dark.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/D_D.png">
+            <img class="img-fluid" src="imgs/lab3/D_D.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/D_T.png">
+            <img class="img-fluid" src="imgs/lab3/D_T.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/DDD.png">
+            <img class="img-fluid" src="imgs/lab3/DDD.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -173,12 +173,12 @@
             <p>As explained prior, the method to use both TOFs at once, is to drive the XSHUT pin on one low while the other has its I2C address changed. We can then address them both individually and concurrently. I changed the address of one to 0x32, on guidance from TA Anya’s former lab3 page. Wiring as per the diagram from earlier, and placing pointing perpendicularly as they will on the car, I repeated the experiment structure from earlier under strong ambient light to produce the following graphs:
 
             </p>
-            <img class="img-fluid" src="imgs/lab3/exp_2T_2.png">
+            <img class="img-fluid" src="imgs/lab3/exp_2T_2.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/p2B.png">
+            <img class="img-fluid" src="imgs/lab3/p2B.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -188,17 +188,17 @@
               We see that while the distance from the front sensor was being uniformly increased, the proximity to my bed and a walkway caused the other TOF to read varying distances, again very precisely within the aforementioned range. In order to account for the additional TOF sensor, I simply amended the script read, send, and parsing scripts on both ends as follows:
               
             </p>
-            <img class="img-fluid" src="imgs/lab3/pB_A.png">
+            <img class="img-fluid" src="imgs/lab3/pB_A.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/DD.png">
+            <img class="img-fluid" src="imgs/lab3/DD.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/loc.png">
+            <img class="img-fluid" src="imgs/lab3/loc.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -210,12 +210,12 @@
 
             </p>
 
-            <img class="img-fluid" src="imgs/lab3/TSC.png">
+            <img class="img-fluid" src="imgs/lab3/TSC.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/TS.png">
+            <img class="img-fluid" src="imgs/lab3/TS.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
@@ -226,22 +226,22 @@
               
             </p>
 
-            <img class="img-fluid" src="imgs/lab3/tvd.png">
+            <img class="img-fluid" src="imgs/lab3/tvd.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/final.png">
+            <img class="img-fluid" src="imgs/lab3/final.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/2TCC.png">
+            <img class="img-fluid" src="imgs/lab3/2TCC.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
 
-            <img class="img-fluid" src="imgs/lab3/L.png">
+            <img class="img-fluid" src="imgs/lab3/L.png" style="width: 50%; height: 50%">
             <p> </p>
             <p> </p>
             <p> </p>
