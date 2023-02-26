@@ -10,6 +10,7 @@
  * Distributed as-is; no warranty is given.
  ***************************************************************/
 #include "ICM_20948.h" // Click here to get the library: http://librarymanager/All#SparkFun_ICM_20948_IMU
+#include "math.h"
 
 //#define USE_SPI       // Uncomment this to use SPI
 
@@ -75,9 +76,17 @@ void loop()
 
   if (myICM.dataReady())
   {
-    myICM.getAGMT();         // The values are only updated when you call 'getAGMT'
-                             //    printRawAGMT( myICM.agmt );     // Uncomment this to see the raw values, taken directly from the agmt structure
-    printScaledAGMT(&myICM); // This function takes into account the scale settings from when the measurement was made to calculate the values with units
+
+    // print accelerometer/gyroscope
+    myICM.getAGMT();              
+    printScaledAGMT(&myICM); 
+    delay(30);
+
+    // print roll and pitch
+    Serial.print("Pitch: ");
+    Serial.println(getPitch(&myICM));
+    Serial.print("Roll: ");
+    Serial.println(getRoll(&myICM));
     delay(30);
   }
   else
@@ -208,20 +217,30 @@ void printScaledAGMT(ICM_20948_SPI *sensor)
 void printScaledAGMT(ICM_20948_I2C *sensor)
 {
 #endif
+
+  // read accelerometer values
   SERIAL_PORT.print("AccX:");
-  printFormattedFloat(sensor->accX(), 5, 2);
-  SERIAL_PORT.print(", ");
-  SERIAL_PORT.print("AccY");
-  printFormattedFloat(sensor->accY(), 5, 2);
-  SERIAL_PORT.print(", ");
-  SERIAL_PORT.print("AccZ");
-  printFormattedFloat(sensor->accZ(), 5, 2);
-  // SERIAL_PORT.print(" ], Gyr (DPS) [ ");
+  SERIAL_PORT.println(sensor->accX());
+  SERIAL_PORT.print(" ");
+  SERIAL_PORT.print("AccY:");
+  SERIAL_PORT.println(sensor->accY());
+  SERIAL_PORT.print(" ");
+  SERIAL_PORT.print("AccZ:");
+  SERIAL_PORT.println(sensor->accZ());
+
+
+  // read gyroscope values
+  // SERIAL_PORT.print("GyrX");
   // printFormattedFloat(sensor->gyrX(), 5, 2);
   // SERIAL_PORT.print(", ");
+  // SERIAL_PORT.print("GyrY");
   // printFormattedFloat(sensor->gyrY(), 5, 2);
   // SERIAL_PORT.print(", ");
+  // SERIAL_PORT.print("GyrZ");
   // printFormattedFloat(sensor->gyrZ(), 5, 2);
+  // SERIAL_PORT.print(", ");
+
+
   // SERIAL_PORT.print(" ], Mag (uT) [ ");
   // printFormattedFloat(sensor->magX(), 5, 2);
   // SERIAL_PORT.print(", ");
@@ -231,5 +250,13 @@ void printScaledAGMT(ICM_20948_I2C *sensor)
   // SERIAL_PORT.print(" ], Tmp (C) [ ");
   // printFormattedFloat(sensor->temp(), 5, 2);
   // SERIAL_PORT.print(" ]");
-  SERIAL_PORT.println();
+  // SERIAL_PORT.println();
+}
+
+float getPitch(ICM_20948_I2C *sensor){
+  return atan2(sensor->accX(),sensor->accZ()) * 180/M_PI; 
+} 
+
+float getRoll(ICM_20948_I2C *sensor){
+  return atan2(sensor->accY(), sensor->accZ()) * 180/M_PI;
 }
