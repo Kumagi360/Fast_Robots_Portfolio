@@ -51,11 +51,11 @@
           <p> </p>
           <h4>Objective: </h4>
           <p>
-            In this lab, I extracted and compute reliable, rapid data from an 3-axis Inertial Measurement Unit (IMU). Putting this sensor together with the TOF sensors from lab 3 and an RC vehicle, I collected, relayed, and visualized accelerometer, gyroscope, and TOF data. 
+            In this lab, I extract and compute rapid, reliable data from a 3-axis Inertial Measurement Unit (IMU). Putting this sensor together with the TOF sensors from lab 3 and an RC vehicle, I collect, relay, and visualize accelerometer, gyroscope, and TOF data. 
           </p>
 
           <h4>IMU Setup </h4>
-          <p> The IMU chip is ICM-20948, mounted on a Sparkfun breakout board. It is connected to the Artemis via a single Qwiic cable. The board's arduino library comes with example scripts to print its accelerometer, gyrosocpe, and magnetometer data over serial. Isolating the accelerometer (X, Y, Z) and gyroscope (X, Y, Z) respectively, I verified the example code works by tracking live movements of the board as follows:
+          <p> The IMU chip is a ICM-20948, mounted on a Sparkfun breakout board. It is connected to the Artemis via a single Qwiic cable. The board's arduino library comes with example scripts to print its accelerometer, gyrosocpe, and magnetometer data over serial. Isolating the accelerometer (X, Y, Z) and gyroscope (X, Y, Z) respectively, I verified the example code works by tracking live movements of the board as follows:
           </p>
 
           <p> </p>
@@ -73,7 +73,7 @@
 
           <p> </p>
 
-          <p> The accelerometer visualization resembles the motion of the IMU very intuitively. As the board increases speed in an axis, the plot for that axis rises to a maxima. After the midpoint, as the board slows to a stop, the plot goes negative and reaches a minima. When the board is flipped, the acceleration due to Earth is naturally inverted, and the plot follows, without changes to the other plots. As the board is spun laterally, there is likewise no change, as the accelerometer does not measure a change in angle. This is instead the job of the gyroscope, whose visualization is far more chaotic and less intuitive to the motion of the IMU. We notice even the IMU at rest causes small fluctuations in all gyroscope measures. We notice that motion along axes doesn't affect any of these measures, but rotation along each causes a corresponding increase/decrease in its plot correpsonding to the speed of rotation. 
+          <p> The accelerometer visualization resembles the motion of the IMU very intuitively. As the board increases speed in an axis, the plot for that axis rises to a maxima. After the midpoint, as the board slows to a stop, the plot goes negative and reaches a minima. When the board is flipped, the acceleration due to Earth is naturally inverted, and the plot follows, without changes to the other plots. As the board is spun laterally, there is likewise no change, as the accelerometer does not measure a change in angle per unit time. This is instead the job of the gyroscope, whose visualization is far more chaotic and less intuitive to the motion of the IMU. We notice even the IMU at rest causes small fluctuations in all gyroscope measures. We notice  motion along axes doesn't affect any  these measures, but rotation about each axis causes a corresponding increase/decrease in its plot based on the speed of rotation. 
           </p>  
 
           <p> In the example script, we note AD0_VAL is initialized as 1. This is as per the default described in the datasheet for the IMU chip for when the ADR jumper is not closed. As we were not to physically alter this pin, this default is accurate.  
@@ -98,7 +98,7 @@
 
 
           <h4>Accelerometer</h4>
-          <p> To determine the accuracy of the accelerometer, I placed it along the axis of a square box sitting on a flat table. Amending the example code to visualize pitch and roll, I substitued formulae from lecture:          
+          <p> To determine the accuracy of the accelerometer, I placed it along the axis of a square box sitting on a flat table. Amending the example code to visualize pitch and roll, I substitued formulae from lecture as follows:          
           </p>
 
           <script src="https://gist.github.com/Kumagi360/7250ce460258be7ebce4fd957a6d91e6.js"></script>
