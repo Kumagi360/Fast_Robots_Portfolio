@@ -98,7 +98,7 @@
 
 
           <h4>Accelerometer</h4>
-          <p> To determine the accuracy of the accelerometer, I placed it along the axis of a square box sitting on a flat table. Amending the example code to visualize pitch and roll, I substitued formulae from lecture as follows:          
+          <p> To determine the accuracy of the accelerometer, I placed it along the axis of a square box sitting on a flat table. Amending the example code to visualize pitch and roll, I substituted formulae from lecture as follows:          
           </p>
 
           <script src="https://gist.github.com/Kumagi360/7250ce460258be7ebce4fd957a6d91e6.js"></script>
@@ -113,7 +113,7 @@
           <p> </p>
 
 
-          <p> As evident by the plot of the roll and pitch, the formula is sound and the accelerometer values are reasonably accurate but suffers from a degree of noise. The unequal error on the positive and negative ends of both roll and pitch (90 and -90 degrees) is also likely due to imperfections in the box, or my holding of the sensor. As below, the following errors are all slightly different and noisy, around +/- 1.5 degrees, and thus cannot be treated as a systematic error and corrected with two-point calibration. The first two screenshots are with the box at extreme pitches, the next two are extreme rolls. At 0 roll and pitch we have a similarly noisy readings, as seen in the video. </p>
+          <p> As evident by the plot of the roll and pitch, the formulae are sound and the accelerometer values are reasonably accurate, but suffer from a degree of noise. The unequal error on the positive and negative ends of both roll and pitch (90 and -90 degrees) is also likely due to imperfections in the box, or my holding of the sensor. As below, the following errors are all slightly different and noisy, around +/- 1.5 degrees, and thus cannot be treated as a systematic error and corrected with two-point calibration. The first two screenshots are with the box at extreme pitches, the next two are extreme rolls. At 0 roll and pitch we have a similarly noisy readings, as seen in the video. </p>
 
 
           <img class="img-fluid" src="imgs/lab4/preCal_A1.png" style="width: 50%; height: 50%">
@@ -137,7 +137,7 @@
 
 
           <p>
-            To explore the noise, I collected multiple 1-second windows of pitch and roll data, sent it over BLE to a Jupyter Notebook, and conducted fast fourier transforms. Transforming from time domain to frequency domain demosntrated that the frequency with the most noise was around 0.15Hz, without any notable spikes at frequencies up to 100Hz (half the sampling frequence of 200Hz), aligned with the 'low-noise mode' described in the datasheet. The code for the both ends of the process is below, and the graphs for pitch and roll below have been zoomed into the relevant sections:
+            To explore the noise, I collected multiple 1-second windows of pitch and roll data, sent it over BLE to a Jupyter Notebook, and conducted fast fourier transforms. Transforming from time domain to frequency domain identified that the frequency with the most noise was around 0.15Hz, without any notable spikes at frequencies up to 100Hz (half the sampling frequence of 200Hz). This is aligned with the 'low-noise mode' default low pass filter described in the datasheet. The code for both devices involved in the FFT is below, and the graphs for pitch and roll below have been zoomed into the relevant sections:
           </p>
 
           <p> </p>
