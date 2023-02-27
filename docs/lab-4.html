@@ -137,7 +137,7 @@
 
 
           <p>
-            To explore the noise, I collected multiple 1-second windows of pitch and roll data, sent it over BLE to a Jupyter Notebook, and conducted fast fourier transforms. Transforming from time domain to frequency domain identified that the frequency with the most noise was around 0.15Hz, without any notable spikes at frequencies up to 100Hz (half the sampling frequence of 200Hz). This is aligned with the 'low-noise mode' default low pass filter described in the datasheet. The code for both devices involved in the FFT is below, and the graphs for pitch and roll below have been zoomed into the relevant sections:
+            To explore the noise, I collected multiple 1-second windows of pitch and roll data, sent it over BLE to a Jupyter Notebook, and conducted fourier transforms. Transforming from time domain to frequency domain identified that the frequency with the most noise was around 0.15Hz, without any notable spikes at frequencies up to 100Hz (half the sampling frequence of 200Hz). This is aligned with the 'low-noise mode' default low pass filter described in the datasheet. The code for both devices involved in the FT is below, and the graphs for pitch and roll below have been zoomed into the relevant sections:
           </p>
 
           <p> </p>
@@ -226,9 +226,9 @@
 
               
               <p>
-              Fianlly, we combine this input stream from the IMU with the streams from the two TOF sensors of lab 3. While we aggregate the data for each bluetooth update, each sensor stream embedded within an update need not be taken synchronously, and thus the loop is never blocked waiting on a sensor. Because of this, while the data will be parsed separately, sending as a single frame makes sense for visualization - ensuring each stream has the same number of data points and apparent sampling rate, making post-processing easier. While this means an individual timestamp may contain some slightly older data, this is better than stalling active streams for a single slower sensor. 
+              Fianlly, we combine this input stream from the IMU with the streams from the two TOF sensors of lab 3. While we aggregate the data for each bluetooth update, each sensor stream embedded within an update need not be taken synchronously, and thus the loop is never blocked waiting on a sensor. Because of this, while each sensor stream will be parsed separately, sending as a single frame makes sense for visualization - ensuring each stream has the same number of data points and apparent sampling rate, making post-processing easier. While this means an individual timestamp may contain some slightly older data, this is better than stalling active streams for a single slower sensor. 
               
-              Below is the main loop script, and the video and results of running the complete script with all three sensors attached. Notice  the graphs are seaprated due to distinct measurement units, but the 5 second timestamp window is identical.
+              Below is the main loop script, and the video and results of running the complete script with all three sensors attached. Notice the graphs are separated to distinguish measurement units, but the data was collected at once, as evidenced by the 5 second timestamp window being identical.
               
             </p>
 
@@ -259,7 +259,7 @@
             <p> </p>
 
             <h4>Battery: </h4>
-            <p>We were given two kinds of 3.7V batteries for the project, one higher with 25C discharge and two lower capacity. Naturally, we use the higher capacity battery to drive the vehicle, as (most) motors demand much more power than microcontrollers and a few sensors, hence draining batteries quicker. 
+            <p>We were given two kinds of 3.7V batteries for the project, one with higher capacity and 25C discharge, and two lower capacity. Naturally, we use the higher capacity battery to drive the vehicle, as (most) motors demand much more power than microcontrollers and a few sensors, hence draining batteries quicker. Using a battery with higher capacity but limited additional weight increases total useable time of the robot before recharge. Below is the electrical system with the 650mAh battery, Artemis, and the three sensors. 
 
             <p> </p>
             
@@ -268,12 +268,6 @@
             <p> </p>
             <p> </p>
 
-
-            <p>
-              
-              We see that while the distance from the front sensor was being uniformly increased, the proximity to my bed and a walkway caused the other TOF to read varying distances, again very precisely within the aforementioned range. In order to account for the additional TOF sensor, I simply amended the script read, send, and parsing scripts on both ends as follows:
-              
-            </p>
             
             <h4> Stunts:</h4>
             <p>Putting everything together, I taped the TOF sensors and IMU, the Artemis and its 650mAh battery, and the 850mAh battery to the black side of the RC car. I mounted one TOF looking forward, and one pointing out to the left from between the wheels. I mounted the IMU towards the frot of the car, on the flatter portion of the hood. Finally, I placed the Artemis on the battery and mounted it near the rear of the vehicle. All TOFs had a clear line of sight, the IMU was as flat as possible, and all the wires were kept clear of the wheels. 
@@ -284,7 +278,7 @@
               <p> </p>
 
               <p>
-              Driving around, I determined the vehicle had a slight left drift tendency, and often seemed to continue a command for longer than the button was pressed. It also bounced quite aggressively off walls on impact. Floor surface did not seem to have a major impact. I also slightly rearranged my mountings when I relaised how easily the car flipped. 
+              Driving around, I determined the vehicle had a slight left drift tendency, and often seemed to continue a command for longer than the button was pressed. It also bounced quite aggressively off walls on impact. Floor surface did not seem to have a major impact, as the same lack of grip was observed on tile as on carpet. I also slightly rearranged my mountings when I realised how easily the car flipped to prevent the Artemis from coming loose. 
 
             </p>
 
@@ -301,14 +295,17 @@
               <source src="imgs/lab4/somer.mov" type="video/mp4">
             </video>
 
-            <p> </p>
+
             <p> </p>
             <p> </p>
               
               
             <p>
-              This all informed my decision to pursue a stunt by accelerating then suddenly reversing the direction of wheel spin - causing unpredicatble and chaotic somersaulting. I figured that if I can collect reasonably accurate data in such a situation, the sensors would hold up in any condition. In the chosen run below, I landed on the left wheels of the vehicle, with the left-side TOF looking at the ground, and the front mounted TOF looking at the closet door. Given there was also wall contact during the aggressive flipping, I determined this was the ideal run to analyze the data of. 
+              This all informed my decision to pursue a stunt by accelerating then suddenly reversing the direction of wheel spin - causing unpredicatble and chaotic somersaulting. I figured that if I can collect reasonably accurate data in such a situation, the sensors would hold up in any condition. In the chosen run below, I landed on the left wheels of the vehicle, with the left-side TOF looking at the ground, and the front mounted TOF looking at the closet door. 
             </p>
+
+            <p> </p>
+            <p> </p>
 
             <video preload="auto" controls>
               <source src="imgs/lab4/stunt.mov" type="video/mp4">
@@ -328,7 +325,7 @@
             <p> </p>
             <p> </p>
 
-            <p> Looking at the IMU data, we realize the multiple flips of the car were not well captured. I believe this is because the sampling frequnecy was not high enough to capture the movements. We see at least one flip clearly, as the pitch of the vehicle rises from nominal, through inversion, and back to nominal. We also see the vehicle's roll plot roughly follow that experienced through the flips, and capture the sideways final position. The yaw is also reasonable as the final yaw of the vehicle appears around 60 degreees counterclockwise from initial. The TOF data captures the sensors reading the floor, the high ceiling, and the (closer) sides of the walkway through the chaotic flipping. It also  gets the final position of the vehicle very accurately, as TOF #2, the TOF mounted leftwards, is looking straight into the ground, while TOF #1 looks a little further towards the closet door.   
+            <p> Looking at the IMU data, we realize the multiple flips of the car were not well captured. I believe this is because the sampling frequency was not high enough to capture the movements. We see at least one flip clearly, as the pitch of the vehicle rises from nominal, through inversion, and back to nominal. We also see the vehicle's roll plot roughly follow that experienced through the flips, and capture the sideways final position. The yaw is also reasonable as the final yaw of the vehicle appears around 60 degreees counterclockwise from initial. The TOF data captures the sensors reading the floor, the high ceiling, and the (closer) sides of the walkway through the chaotic flipping. It also  gets the final position of the vehicle very accurately, as TOF #2, the TOF mounted leftwards, is looking straight into the ground, while TOF #1 looks a little further towards the closet door.   
               
             </p>
 
