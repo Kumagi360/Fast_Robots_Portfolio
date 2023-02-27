@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lab 4</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imgs/about.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: MyPortfolio - v4.10.0
+  * Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Navbar ======= -->
+
+  <main id="main">
+
+    <section class="section">
+      <div class="container">
+        <div class="row mb-4 p-5 align-items-center">
+          <a class="navbar-brand" href="index.html">Back to Portfolio</a>
+          <p> </p>
+          <h1>Lab 4</h1>
+
+          <p> </p>
+          <h4>Objective: </h4>
+          <p>
+            In this lab, I extracted and compute reliable, rapid data from an 3-axis Inertial Measurement Unit (IMU). Putting this sensor together with the TOF sensors from lab 3 and an RC vehicle, I collected, relayed, and visualized accelerometer, gyroscope, and TOF data. 
+          </p>
+
+          <h4>IMU Setup </h4>
+          <p> The IMU chip is ICM-20948, mounted on a Sparkfun breakout board. It is connected to the Artemis via a single Qwiic cable. The board's arduino library comes with example scripts to print its accelerometer, gyrosocpe, and magnetometer data over serial. Isolating the accelerometer (X, Y, Z) and gyroscope (X, Y, Z) respectively, I verified the example code works by tracking live movements of the board as follows:
+          </p>
+
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab4/accelTest.mov" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab4/gyroTest.mov" type="video/mp4">
+          </video>
+
+          <p> </p>
+
+          <p> The accelerometer visualization resembles the motion of the IMU very intuitively. As the board increases speed in an axis, the plot for that axis rises to a maxima. After the midpoint, as the board slows to a stop, the plot goes negative and reaches a minima. When the board is flipped, the acceleration due to Earth is naturally inverted, and the plot follows, without changes to the other plots. As the board is spun laterally, there is likewise no change, as the accelerometer does not measure a change in angle. This is instead the job of the gyroscope, whose visualization is far more chaotic and less intuitive to the motion of the IMU. We notice even the IMU at rest causes small fluctuations in all gyroscope measures. We notice that motion along axes doesn't affect any of these measures, but rotation along each causes a corresponding increase/decrease in its plot correpsonding to the speed of rotation. 
+          </p>  
+
+          <p> In the example script, we note AD0_VAL is initialized as 1. This is as per the default described in the datasheet for the IMU chip for when the ADR jumper is not closed. As we were not to physically alter this pin, this default is accurate.  
+          </p>
+
+          <p> In order to identify when the Artemis is starting up, or has unexpected restarted, I added a start-up sequence: three blinks, with a period of 1 second. 
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/5993ecef169845693248b9a01da2fb6a.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab4/startup.mov" type="video/mp4">
+          </video>
+
+          <p> </p>
+
+
+          <h4>Accelerometer</h4>
+          <p> To determine the accuracy of the accelerometer, I placed it along the axis of a square box sitting on a flat table. Amending the example code to visualize pitch and roll, I substitued formulae from lecture:          
+          </p>
+
+          <script src="https://gist.github.com/Kumagi360/7250ce460258be7ebce4fd957a6d91e6.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab4/accelPrec.mov" type="video/mp4">
+          </video>
+
+          <p> </p>
+
+
+          <p> As evident by the plot of the roll and pitch, the formula is sound and the accelerometer values are reasonably accurate but suffers from a degree of noise. The unequal error on the positive and negative ends of both roll and pitch (90 and -90 degrees) is also likely due to imperfections in the box, or my holding of the sensor. As below, the following errors are all slightly different and noisy, around +/- 1.5 degrees, and thus cannot be treated as a systematic error and corrected with two-point calibration. The first two screenshots are with the box at extreme pitches, the next two are extreme rolls. At 0 roll and pitch we have a similarly noisy readings, as seen in the video. </p>
+
+
+          <img class="img-fluid" src="imgs/lab4/preCal_A1.png" style="width: 50%; height: 50%">
+          <p> </p>
+
+
+          <img class="img-fluid" src="imgs/lab4/preCal_A2.png" style="width: 50%; height: 50%">
+          <p> </p>
+
+
+          <img class="img-fluid" src="imgs/lab4/preCal_R1.png" style="width: 50%; height: 50%">
+          <p> </p>
+
+
+          <img class="img-fluid" src="imgs/lab4/preCal_R2.png" style="width: 50%; height: 50%">
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+
+
+
+          <p>
+            To explore the noise, I collected multiple 1-second windows of pitch and roll data, sent it over BLE to a Jupyter Notebook, and conducted fast fourier transforms. Transforming from time domain to frequency domain demosntrated that the frequency with the most noise was around 0.15Hz, without any notable spikes at frequencies up to 100Hz (half the sampling frequence of 200Hz), aligned with the 'low-noise mode' described in the datasheet. The code for the both ends of the process is below, and the graphs for pitch and roll below have been zoomed into the relevant sections:
+          </p>
+
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/ce25e0f667e0e1e19bc47540998c79b9.js"></script>
+
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/633e59a65fac7c810f6e8e9882a19563.js"></script>
+
+          <p> </p>
+
+
+          <img class="img-fluid" src="imgs/lab4/TR_Pitch.png" style="width: 50%; height: 50%">
+          <p> </p>
+
+
+          <img class="img-fluid" src="imgs/lab4/FR_Pitch.png" style="width: 50%; height: 50%">
+          <p> </p>
+
+
+          <img class="img-fluid" src="imgs/lab4/TR_Roll.png" style="width: 50%; height: 50%">
+          <p> </p>
+
+
+          <img class="img-fluid" src="imgs/lab4/FR_Roll.png" style="width: 50%; height: 50%">
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          
+          <h3>Gyroscope: </h3>
+          <p> Having concluded exploration of the accelerometer, the propsect of using gyroscope data to augment and improve accelerometer data was expored. In order to compare the angles measured by both, pitch and roll needed to be derived from the gyroscopes measured change in angle per unit time, and sent alongside accelerometer angles for visualization. The gyroscope also gives us an additional stream of data incapable of being recorded by the accelerometer: yaw.
+            </p>
+
+            <script src="https://gist.github.com/Kumagi360/6a49d7699839a959c3aa3272d8f75778.js"></script>
+
+            <p> </p>
+            <p> </p>
+
+
+            <img class="img-fluid" src="imgs/lab4/accelvgyro.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <p> From this graph we make some important observations. Both the pitch and roll for both sensors are nearly identical, however, the accelerometer's readings appear significantly noisier. Sampling was done at the same rate for both sensors, hence we know this is not a function of the accelerometer having less datapoints. We also notice that although both values begin identical, the gyroscope values gradually drift from the acclerometer values, and end separated by about 5 degrees. This is drift over the course of 10 seconds, suggesting longer reading durations would lead to more pronounced drift. All sampling frequencies resulted in very similar data (hence not presented). </p>
+
+            <p> Fusing the accelerometer and the gyroscope using a complementary filter, we get smooth readings that suffer far less to drift and sudden motions. In the plots below we experiment with first moving the sensor gently, then with abrupt quick motions between bound extremes, to demonstrate its resilience and range in both situations:
+              </p>
+
+              <script src="https://gist.github.com/Kumagi360/ec3e0d0abb210adb6d2bf13b1830d295.js"></script>
+
+              <img class="img-fluid" src="imgs/lab4/C_gentle.png" style="width: 50%; height: 50%">
+              <p> </p>
+              <p> </p>
+
+              <img class="img-fluid" src="imgs/lab4/C_bounds.png" style="width: 50%; height: 50%">
+              <p> </p>
+              <p> </p>
+
+
+
+            <h4>Single TOF Sensor Mode Testing:</h4>
+            <p>I chose to test the sensor mode ‘DistanceShort’, with a maximum expected range of 1.3 metres. I chose this for two reasons. Firstly, I believe having a high degree of accuracy within this range would be essential to optimal obstacle avoidance as, given the small and agile nature of the robot, manoeuvres can be made closer to obstacles than less agile robots. The more important reason was the datasheet’s claim that this mode is far more resilient to changing ambient light conditions than its alternatives. This is important as we may not always have the ability to adjust ambient lighting, in a common workspace or outdoors for example. The datasheet claims the maximum viewable distance for the short distance mode TOFs in dark and under strong ambient light is roughly equal at ~135cm, whereas the medium and long distance drop off massively from 290cm to 76cm and 360cm to 73cm. While in some conditions these would offer greater localisation capabilities, this level of variability would be difficult to account for in all situations, and thus is best avoided. 
+            </p>
+              <img class="img-fluid" src="imgs/lab3/modes.png" style="width: 50%; height: 50%">
+              <p> </p>
+              <p> </p>
+              <p> </p>
+              
+              <p>
+              I tested the sensor mode for both its claims of maximum distance, and resilience to ambient light. I also tested the ranging time and repeatability under changing measured distance to determine what effect the mode would have on sampling delay. 
+              
+              To test, I placed a measuring tape on the floor, leading up to a flat panel on one end, and the system mounted sturdily on a perpendicular mobile surface on the other end. By taking 50 samples at a given distance, then moving 15 centimetres closer/further from the flat panel, I collected data on a single TOF sensor at 14 distances from 5 centimetres to 200 centimetres inclusive. By relaying through bluetooth, I would be able to parse and visualise the data in a Jupiter Notebook using Numpy and Matplotlib. 
+              
+            </p>
+            <img class="img-fluid" src="imgs/lab3/light.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            
+            <p>
+              
+              To script this, I made a new command that read 50 TOF samples, relayed them individually to the Jupiter Notebook for parsing, then gave me 10 seconds to move the system to the next distance marker. Repeating 14 times, this allowed all my data to be collected in under 5 minutes. Below are snippets of the code to read TOF data (newReading()), send data (sendReading()) , and grant time for moving the setup (readAndSend50TOF()).
+              
+            </p>
+            <img class="img-fluid" src="imgs/lab3/exp_B.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/exp_C.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/exp_A.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            
+            <p>
+              
+              The results are summarised in the graphs below. While the legend isn’t very clear, the graph is telling. Up to ~1500 milimeters, in strong ambient light conditions, all 50 distance samples are highly similar and accurate to the true distance. After that point, the samples become more variable, and diverge slightly more from the ground truth. The maximum standard deviation for any distance was 1800mm with 32mm of deviation. I conclude this sensor is usable up to the measured 200 centimetres in most situations. The ranging time was as expected, with an average of ~53mS up to ~1350 millimeters , when it became a much quicker ~32mS. This is most likely a function of the precision sampling being done in the short distance mode up to that distance, as prescribed in the datasheet.
+              
+            </p>
+            <img class="img-fluid" src="imgs/lab3/L_D.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/L_T.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            
+            <p>
+              
+              The dark testing is similar, with a non-negligible increase in the tightness of sampling at longer distances, accurate up to ~1750 millimetres as opposed to the ~1500 millimetres in the light testing. The number of samples taken decreased the likelihood this was the result of an experimental error, and hence I find the sensor functions more accurately and repeatably in the dark than under strong ambient light. The ranging times were effectively the same as in ambient light testing. 
+              
+            </p>
+            <img class="img-fluid" src="imgs/lab3/dark.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/D_D.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/D_T.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/DDD.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <h4>Two TOF Sensor Testing: </h4>
+            <p>As explained prior, the method to use both TOFs at once, is to drive the XSHUT pin on one low while the other has its I2C address changed. We can then address them both individually and concurrently. I changed the address of one to 0x32, on guidance from TA Anya’s former lab3 page. Wiring as per the diagram from earlier, and placing pointing perpendicularly as they will on the car, I repeated the experiment structure from earlier under strong ambient light to produce the following graphs:
+
+            </p>
+            <img class="img-fluid" src="imgs/lab3/exp_2T_2.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/p2B.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+            
+            <p>
+              
+              We see that while the distance from the front sensor was being uniformly increased, the proximity to my bed and a walkway caused the other TOF to read varying distances, again very precisely within the aforementioned range. In order to account for the additional TOF sensor, I simply amended the script read, send, and parsing scripts on both ends as follows:
+              
+            </p>
+            <img class="img-fluid" src="imgs/lab3/pB_A.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/DD.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/loc.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            
+
+            <h4> Two TOF Speed:</h4>
+            <p>In order to maximise the rate of execution for the two TOFs, I changed the Artemis-side script to avoid the busy wait condition during ranging given in the example script. Instead, I simply run the checkForDataReady() method of the distanceSensor class on each sensor, and poll for new samples. As shown below, there were many iterations of the loop when neither sensor had a new sample, and so only the timestamp was printed. From this we see the execution time of the loop was ~7 mS, with a new pair of sensor readings approximately every ~50 mS separated by ~15mS. I believe the current limiting factor in the speed of this loop is the checkForDataReady function itself, and the time it takes to Serial print the current time/ new samples. I conclude this as there are no other lines in the loop that could consume excess time. 
+
+            </p>
+
+            <img class="img-fluid" src="imgs/lab3/TSC.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/TS.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+
+            <h4> Two TOF Readings: </h4>
+            <p>The benefit of the new reading method for the two TOFs is that data can be collected relatively asynchronously, and not halt the script in between. Changing the data sent from the Artemis to the Notebook to include current time rather than ranging time, and simplifying the visualisation script, yielded this graph:
+              
+            </p>
+
+            <img class="img-fluid" src="imgs/lab3/tvd.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/final.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/2TCC.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+            <img class="img-fluid" src="imgs/lab3/L.png" style="width: 50%; height: 50%">
+            <p> </p>
+            <p> </p>
+            <p> </p>
+
+        </div>
+      </div>
+
+    </section>
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="mb-1">&copy; Kunal Gupta, 2023</p>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyPortfolio
+          -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+        <div class="col-sm-6 social text-md-end">
+          <a href="https://www.linkedin.com/in/kunalgupta360/"><span class="bi bi-linkedin"></span></a>
+          <a href="https://github.com/Kumagi360/Fast_Robots_Portfolio"><span class="bi bi-github"></span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
