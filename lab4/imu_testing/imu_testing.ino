@@ -30,8 +30,22 @@ ICM_20948_SPI myICM; // If using SPI create an ICM_20948_SPI object
 ICM_20948_I2C myICM; // Otherwise create an ICM_20948_I2C object
 #endif
 
+
+// const pin_size_t ledPinNumber = LED_BUILTIN;
+// const PinName ledPinName = LED1;
+
 void setup()
 {
+  // startup sequence: blink LED 3 times over 3 seconds (toggle every 50mS)
+  pinMode(LED_BUILTIN, OUTPUT);
+  
+  for (int blink = 0; blink < 3; blink++){
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(500);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(500);    
+  }
+
 
   SERIAL_PORT.begin(115200);
   while (!SERIAL_PORT)
@@ -76,17 +90,18 @@ void loop()
 
   if (myICM.dataReady())
   {
+     myICM.getAGMT();     
 
     // print accelerometer/gyroscope
-    myICM.getAGMT();              
-    printScaledAGMT(&myICM); 
-    delay(30);
-
+    // printScaledAGMT(&myICM); 
+    
     // print roll and pitch
-    Serial.print("Pitch: ");
-    Serial.println(getPitch(&myICM));
-    Serial.print("Roll: ");
+    Serial.print("Pitch:");
+    Serial.print(getPitch(&myICM));
+    Serial.print(" ");
+    Serial.print("Roll:");
     Serial.println(getRoll(&myICM));
+
     delay(30);
   }
   else
@@ -230,15 +245,14 @@ void printScaledAGMT(ICM_20948_I2C *sensor)
 
 
   // read gyroscope values
-  // SERIAL_PORT.print("GyrX");
-  // printFormattedFloat(sensor->gyrX(), 5, 2);
-  // SERIAL_PORT.print(", ");
-  // SERIAL_PORT.print("GyrY");
-  // printFormattedFloat(sensor->gyrY(), 5, 2);
-  // SERIAL_PORT.print(", ");
-  // SERIAL_PORT.print("GyrZ");
-  // printFormattedFloat(sensor->gyrZ(), 5, 2);
-  // SERIAL_PORT.print(", ");
+  SERIAL_PORT.print("GyrX:");
+  SERIAL_PORT.println(sensor->gyrX());
+  SERIAL_PORT.print(" ");
+  SERIAL_PORT.print("GyrY:");
+  SERIAL_PORT.println(sensor->gyrY());
+  SERIAL_PORT.print(" ");
+  SERIAL_PORT.print("GyrZ:");
+  SERIAL_PORT.println(sensor->gyrZ());
 
 
   // SERIAL_PORT.print(" ], Mag (uT) [ ");
@@ -260,3 +274,5 @@ float getPitch(ICM_20948_I2C *sensor){
 float getRoll(ICM_20948_I2C *sensor){
   return atan2(sensor->accY(), sensor->accZ()) * 180/M_PI;
 }
+
+
