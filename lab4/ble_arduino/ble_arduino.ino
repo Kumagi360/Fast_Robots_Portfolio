@@ -268,50 +268,166 @@ void readTimedTOF(){
 
 }
 
-////////////////// TIMED_FFT //////////////////////////
+////////////////// TIMED_FFT (ACCEL and GYRO) //////////////////////////
 
 float getPitch(ICM_20948_I2C *sensor){
   return atan2(sensor->accX(),sensor->accZ()) * 180/M_PI; 
 } 
 
 float getRoll(ICM_20948_I2C *sensor){
-  return atan2(sensor->accY(), sensor->accZ()) * 180/M_PI;
+  return -atan2(sensor->accY(), sensor->accZ()) * 180/M_PI;
 }
 
-void sendFFTData(float pitch, float roll){
+float getPitchGyr(ICM_20948_I2C *sensor, float pitch, float dt){
+  pitch = pitch - sensor->gyrY()*dt/1000.;
+  if (pitch < -180){
+    pitch = 180 - (abs(pitch) - 180);
+  }
+  if (pitch > 180){
+    pitch = -180 + (pitch - 180);
+  }
+  return pitch;
+}
+
+float getRollGyr(ICM_20948_I2C *sensor, float roll, float dt){
+  roll = roll - sensor->gyrX()*dt/1000.;
+    if (roll < -180){
+    roll = 180 - (abs(roll) - 180);
+  }
+  if (roll > 180){
+    roll = -180 + (roll - 180);
+  }
+  return roll;
+}
+
+float getYawGyr(ICM_20948_I2C *sensor, float yaw, float dt){
+  yaw = yaw - sensor->gyrZ()*dt/1000.;
+    if (yaw < -180){
+    yaw = 180 - (abs(yaw) - 180);
+  }
+  if (yaw > 180){
+    yaw = -180 + (yaw - 180);
+  }
+  return yaw;
+}
+
+void sendFFTData(int time, float pitchA, float rollA, float pitchG, float rollG, float yawG){
 
   // char time_arr[MAX_MSG_SIZE];
   // sprintf(time_arr, "%d", millis());
 
   tx_estring_value.clear();
-  tx_estring_value.append(pitch);
+  tx_estring_value.append(time);
   tx_estring_value.append("|");
-  tx_estring_value.append(roll);
+  tx_estring_value.append(pitchA);
+  tx_estring_value.append("|");
+  tx_estring_value.append(rollA);
+  tx_estring_value.append("|");
+  tx_estring_value.append(pitchG);
+  tx_estring_value.append("|");
+  tx_estring_value.append(rollG);
+  tx_estring_value.append("|");
+  tx_estring_value.append(yawG);
   tx_characteristic_string.writeValue(tx_estring_value.c_str());
 
   //Serial.print("Sent back: ");
   //Serial.println(tx_estring_value.c_str());
 }
+
+void sendComplement(int time, float cP, float cR){
+  tx_estring_value.clear();
+  tx_estring_value.append(time);
+  tx_estring_value.append("|");
+  tx_estring_value.append(cP);
+  tx_estring_value.append("|");
+  tx_estring_value.append(cR);
+  tx_characteristic_string.writeValue(tx_estring_value.c_str());
+}
+
+void sendIMUVals(int time, float cP, float cR, float yaw){
+  tx_estring_value.clear();
+  tx_estring_value.append(time);
+  tx_estring_value.append("|");
+  tx_estring_value.append(cP);
+  tx_estring_value.append("|");
+  tx_estring_value.append(cR);
+  tx_estring_value.append("|");
+  tx_estring_value.append(yaw);
+  tx_characteristic_string.writeValue(tx_estring_value.c_str());  
+}
+
+void sendAllData(int time, float cP, float cR, float yaw, int ONEDist, int TWODist){
+  tx_estring_value.clear();
+  tx_estring_value.append(time);
+  tx_estring_value.append("|");
+  tx_estring_value.append(cP);
+  tx_estring_value.append("|");
+  tx_estring_value.append(cR);
+  tx_estring_value.append("|");
+  tx_estring_value.append(yaw);
+  tx_estring_value.append("|");
+  tx_estring_value.append(ONEDist);
+  tx_estring_value.append("|");
+  tx_estring_value.append(TWODist);
+  tx_characteristic_string.writeValue(tx_estring_value.c_str());  
   
-void FFTRead5Seconds(){
+}  
+
+int ONEDistance = 0;
+int TWODistance = 0;
+
+void IMUAndTOF(){
 
   int start_time = millis();
   int last_time = start_time;
   int instances = 0;
 
-  while (instances < 200){
-    
-    if (millis() - last_time > 5){
+  float curPitchG = getPitch(&myICM);
+  float curRollG = getRoll(&myICM);
+  float curYawG = 0.0;
+
+  float complementPitch = getPitch(&myICM);
+  float complementRoll = getRoll(&myICM);
+
+
+
+  while (millis() - start_time < 5000){
      if (myICM.dataReady()){
-            myICM.getAGMT();
-            last_time = millis();
-            sendFFTData(getPitch(&myICM), getRoll(&myICM));
-            instances += 1;
-      }
+        myICM.getAGMT();
+        
+        // Sending IMU data 
+        curPitchG = getPitchGyr(&myICM, curPitchG, millis() - last_time);
+        curRollG = getRollGyr(&myICM, curRollG, millis() - last_time);
+        curYawG = getYawGyr(&myICM,curYawG,  millis() - last_time);
+        last_time = millis();
+
+        //sendFFTData(millis(), getPitch(&myICM), getRoll(&myICM), curPitchG, curRollG, curYawG);
+
+        complementPitch = curPitchG*0.9 + getPitch(&myICM)*0.1;
+        complementRoll = curRollG*0.9 + getRoll(&myICM)*0.1;
+
+      }  
+            
+    //sendComplement(millis(), complementPitch, complementRoll);  
+
+    // Sending TOF Data
+    if (distanceSensor1.checkForDataReady()){
+        ONEDistance = distanceSensor1.getDistance(); 
+        distanceSensor1.clearInterrupt();
+        distanceSensor1.stopRanging();
+        distanceSensor1.startRanging();
     }
 
-  }
+    if (distanceSensor2.checkForDataReady()){
+        TWODistance = distanceSensor2.getDistance(); 
+        distanceSensor2.clearInterrupt();
+        distanceSensor2.stopRanging();
+        distanceSensor2.startRanging();
+    }
 
+    sendAllData(millis(), complementPitch, complementRoll, curYawG, ONEDistance, TWODistance);   
+
+  }
 }
 
 
@@ -519,7 +635,7 @@ handle_command()
         }
 
         case TIMED_FFT:{
-          FFTRead5Seconds();
+          IMUAndTOF();
           break;
         }
 
@@ -586,7 +702,7 @@ setup()
 
 
     // init TOFs
-    /*
+    
     Wire.begin();
 
     pinMode(2, OUTPUT);
@@ -623,7 +739,7 @@ setup()
     distanceSensor1.setDistanceModeShort();
 
     distanceSensor2.setDistanceModeShort();
-    */
+    
 
 
   // setup BLE
@@ -705,8 +821,8 @@ loop()
       //delay(2000);
 
       // create an array for storing a string concatenation of distance and ranging time
-      // distanceSensor1.startRanging();
-      // distanceSensor2.startRanging();
+      distanceSensor1.startRanging();
+      distanceSensor2.startRanging();
 
         // While central is connected
         while (central.connected()) {

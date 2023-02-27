@@ -276,3 +276,18 @@ float getRoll(ICM_20948_I2C *sensor){
 }
 
 
+float getPitchGyr(ICM_20948_I2C *sensor, int dt){
+  pitch = pitch - sensor->gyrY()*dt;
+  return pitch;
+}
+
+float getRollGyr(ICM_20948_I2C *sensor, int dt){
+  roll = roll - sensor->gyrX()*dt;
+  return roll;
+}
+
+float getYawGyr(ICM_20948_I2C *sensor, int dt){
+  yaw = yaw - sensor->gyrZ()*dt;
+  return yaw;
+}
+
