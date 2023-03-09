@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lab 5</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imgs/about.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: MyPortfolio - v4.10.0
+  * Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Navbar ======= -->
+
+  <main id="main">
+
+    <section class="section">
+      <div class="container">
+        <div class="row mb-4 p-5 align-items-center">
+          <a class="navbar-brand" href="index.html">Back to Portfolio</a>
+          <p> </p>
+          <h1>Lab 5</h1>
+
+          <p> </p>
+          <h4>Objective: </h4>
+          <p>
+            In this lab, I replace the control electronics of the RC vehicle with the Artemis, sensors, and motor drivers assembly. In doing so I experiment with the motor drivers, how they are powered and programmed, and with open loop control. 
+          </p>
+
+          <h4>Prelab</h4>
+          <p> Having read the documentation for the dual motor driver module, I understood the connections needed to use it for the RC cars brushed DC motors. To power the module the 3.7V operating voltage of the Artemis (from the battery) was sufficent. To control the two output channels, AOUT and BOUT, and their respective two sides 1 and 2, we needed to supply PWM signals to the corresponding sides 1 and 2 of the AIN and BIN channels. As we have 2 such modules, we could parallel the two channels of each module (as they share a common clock) in order to double the total current suppliable, from 2A to 4A in short bursts, and from 1.2A to 2.4A continous. Exlcuding the connections with the sensors from previous labs, this a diagram of how the motor driver and 850mAH battery are connected to the Artemis:
+          </p>
+
+          <img class="img-fluid" src="imgs/lab5/diag.jpeg" style="width: 70%; height: 70%">
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <p> Notice ground is shared between all components, and that all pins on the Artemis are PWM-capable as per the datasheet. I chose to make all connections with stranded wire to allow flexibility in mounting, adn ease of twisting the wires to reduce EMI. I also  soldered the wires directly onto the modules/Artemis without headers to reduce possible points of poor soldering. We were asked to power the motor and the Artemis with separate batteries to reduce shared noise, in particular across from the motors to the sensitive sensors. 
+          </p>
+
+          <h4>Lab Tasks</h4>
+
+          <h5>Single Motor Driver</h5>
+          <p> First, we verified the behavior of a single motor driver, wired as per the diagram above, given PWM signals as if driving the motor in both directions. To do so, I wired the same sides for A and B together on both the INs and OUTs side using short wires, then soldered longer wires correpsonding to side 1 and side 2. The INs side were soldered onto the Artemis pins A0 and A15, while the OUTs were hooked up to oscilloscope probes. The VIN was connected to a power supply positive terminal, and GND was shared between it, the power supply negative, and a GND on the Artemis. The power supply was set at 3.7V to match the battery used later, and current limited to 4A as per the maximum draw of the parallel coupled motor driver. 
+          </p>  
+
+          <img class="img-fluid" src="imgs/lab5/setup.JPG" style="width: 50%; height: 70%">
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <p> Writing a short script to step through 5 different PWM values from 50 to 250, and while setting the other side to 0, allowed us to see the duty cycle change in each state on the scope. The duty cycle is the percentage of time in which the output is high, dictating the effective voltage at the output, and is written to pin as a number mapped from 0-255. Alternating which side is receiving the PWMs, the valid result is shown below:
+          </p>
+
+          <script src="https://gist.github.com/Kumagi360/e1ced2604b6ae71ae69cf7ed22d40bfe.js"></script>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab5/scope.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+          <h5>Driver Integration</h5>
+          <p> Having removed the control electronics from the car, I then soldered the OUT sides to the pins of its left motor. Keeping these wheels unloaded by putting the car left side up, I was able to verify the motor driver spins the wheels, still using the power supply, by simply writing PWM in a given direction at speed 150, then writing PWM in the opposite direction at speed 150. 
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/f434fa3163ecaaba36d609908492b834.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/3b1f378293f4c82333cbf7002223733a.js"></script>
+
+          <p> </p>
+          <p> </p>
+          
+          <p>The direction is easiest to verify as the wheels come to a stop after switching off the power supply as follows:
+          </p>
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab5/LUP.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+          <video preload="auto" controls>
+            <source src="imgs/lab5/LUPCC.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+          <p> Replacing the power supply with the 850mAh battery and running the  same 2-line scripts yielded these results, identical to those from the power supply tests. This time, instead of powering off the scope, we unplugged the Artemis.          
+          </p>
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab5/BLUP.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab5/BLUPCC.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+
+          <p> Having verified that the motor driver works as intended with this wiring and code, I simply replicated it on the other motor driver, using PWM pins 3 and 16 on the Artemis. Leaving the battery to power the motors, we could then write a script to test both directions on both the left and right motors in turn.</p>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/7cca4d0136c52d274f090e8741985302.js"></script>
+
+          
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab5/elev.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+          <p> I also wrote a script to drive forwards and drive backwards to verify the two sides could run together.        
+          </p>
+
+
+          <script src="https://gist.github.com/Kumagi360/f19f94c42187160def93298be0658332.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab5/AWD2.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+          <h5>System Installation</h5>
+          <p> Having now completed the entire electrical assembly for the RC car, I installed it into the chassis. I did so bearing a few goals in mind: have a front and a side facing TOF, have the accelerometer be parallel to the ground, shield all components from as much EMI noise as possible, and provide easy access to batteries for replacement and the Artemis for reprogramming. This all needed to be done in addition to preventing components from falling off during motion, and not hindering any motion either. I also sought to twist wires to cancel EMI effects where possible. My final mounting is as follows:</p>
+
+          <img class="img-fluid" src="imgs/lab5/config.jpeg" style="width: 70%; height: 70%">
+          <p> </p>
+
+          <h5>Loaded Driving</h5>
+          <p>In order to use the car, it is important to understand the minimum parameters required to have it move. By manually changing PWM values until the car stopped moving forward/backwards, and on-axis rotating, I found that at a common PWM 30 the car barely moved straight, while with a single motor at PWM 50 the car barely turned. The motion at these bounds looks very similar to each other, as in the clip below:
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab5/minR.MOV" type="video/mp4">
+          </video>
+
+          
+          <p> </p>
+          <p> </p>
+
+          <p> Being able to drive the car in a straight line is also very important, thus the following video was taken of the car driving forwards and backwards with both motors at 100 PWM for 1.5 seconds each (traversing about 6 feet each).
+            </p>
+
+            <p> </p>
+            <p> </p>
+  
+            <video preload="auto" controls>
+              <source src="imgs/lab5/badT.MOV" type="video/mp4">
+            </video>
+  
+            
+            <p> </p>
+            <p> </p>
+
+            <p> As we see, there was a right drift of about 2 feet off the guiding line. As per the straight line code above, we see the PWM of both motors is equal. Thus, we neeeded a calibration factor to improve the straight line precision. After much manual trial and error, and keeping mindful of how a weaker battery would impact speed, the best factor I could find was setting the right side PWM to the left side multiplied by 1.7 (bounded within 255 as an int). While this result is still subpar, the new measured drift is an improved 1 foot, a 50% reduction</p>
+
+            <p> </p>
+
+            <script src="https://gist.github.com/Kumagi360/9949209fa4b963e0423463f1b117f4e9.js"></script>
+
+            <p> </p>
+            <p> </p>
+  
+            <video preload="auto" controls>
+              <source src="imgs/lab5/calib.mov" type="video/mp4">
+            </video>
+  
+            
+            <p> </p>
+            <p> </p>
+
+
+            <p> Finally, conducting some simple open loop control, I sought to run the car forward for 1 second, have it do a spot turn by running one side forward and the other side backwards for another, and reverse for a final second. 
+              </p>
+
+              <script src="https://gist.github.com/Kumagi360/36cf4b6f8c87ec8ff258581bfbf3622b.js"></script>
+
+              <p> </p>
+              <p> </p>
+
+              <video preload="auto" controls>
+                <source src="imgs/lab5/openLoop.MOV" type="video/mp4">
+              </video>
+
+              <p> </p>
+              <p> </p>
+
+        </div>
+      </div>
+
+    </section>
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="mb-1">&copy; Kunal Gupta, 2023</p>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyPortfolio
+          -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+        <div class="col-sm-6 social text-md-end">
+          <a href="https://www.linkedin.com/in/kunalgupta360/"><span class="bi bi-linkedin"></span></a>
+          <a href="https://github.com/Kumagi360/Fast_Robots_Portfolio"><span class="bi bi-github"></span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

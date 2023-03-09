@@ -102,7 +102,7 @@ void driveRight(){
   analogWrite(RightPin1, 0);
 }
 
-void driveForwardCalib(){
+void driveForwardandBackwardCalib(){
 
   analogWrite(LeftPin1, 100);
   analogWrite(RightPin1, min(255, floor(100 * calibFactor)));
