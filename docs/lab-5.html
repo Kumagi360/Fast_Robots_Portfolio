@@ -55,7 +55,7 @@
           </p>
 
           <h4>Prelab</h4>
-          <p> Having read the documentation for the dual motor driver module, I understood the connections needed to use it for the RC cars brushed DC motors. To power the module the 3.7V operating voltage of the Artemis (from the battery) was sufficent. To control the two output channels, AOUT and BOUT, and their respective two sides 1 and 2, we needed to supply PWM signals to the corresponding sides 1 and 2 of the AIN and BIN channels. As we have 2 such modules, we could parallel the two channels of each module (as they share a common clock) in order to double the total current suppliable, from 2A to 4A in short bursts, and from 1.2A to 2.4A continous. Exlcuding the connections with the sensors from previous labs, this a diagram of how the motor driver and 850mAH battery are connected to the Artemis:
+          <p> Having read the documentation for the dual motor driver module, I understood the connections needed to use it for the RC car's brushed DC motors. To power the module the 3.7V operating voltage of the Artemis (from the battery) was sufficent. To control the two output channels, AOUT and BOUT, and their respective two sides 1 and 2, we needed to supply PWM signals to the corresponding sides 1 and 2 of the AIN and BIN channels. As we have 2 such dual motor drivers modules but only 2 motors, we could parallel the two channels within each module (as they share a common clock) in order to double the total current suppliable, from 2A to 4A in short bursts, and from 1.2A to 2.4A continous. Exlcuding the connections with the sensors from previous labs, this a diagram of how the motor drivers and 850mAH battery are connected to the Artemis:
           </p>
 
           <img class="img-fluid" src="imgs/lab5/diag.jpeg" style="width: 70%; height: 70%">
@@ -69,7 +69,7 @@
           <h4>Lab Tasks</h4>
 
           <h5>Single Motor Driver</h5>
-          <p> First, we verified the behavior of a single motor driver, wired as per the diagram above, given PWM signals as if driving the motor in both directions. To do so, I wired the same sides for A and B together on both the INs and OUTs side using short wires, then soldered longer wires correpsonding to side 1 and side 2. The INs side were soldered onto the Artemis pins A0 and A15, while the OUTs were hooked up to oscilloscope probes. The VIN was connected to a power supply positive terminal, and GND was shared between it, the power supply negative, and a GND on the Artemis. The power supply was set at 3.7V to match the battery used later, and current limited to 4A as per the maximum draw of the parallel coupled motor driver. 
+          <p> First, we verified the behavior of a single motor driver, wired as per the diagram above, given PWM signals as if driving the motor in both directions. To do so, I wired the same sides for A and B together on both the INs and OUTs side using short wires, then soldered longer wires corresponding to side 1 and side 2. The INs side were soldered onto the Artemis pins A0 and A15, while the OUTs were hooked up to oscilloscope probes. The VIN was connected to a power supply positive terminal, and GND was shared between it, the power supply negative, and a GND on the Artemis. The power supply was set at 3.7V to match the battery used later, and current limited to 4A as per the maximum draw of the parallel coupled motor driver. 
           </p>  
 
           <img class="img-fluid" src="imgs/lab5/setup.JPG" style="width: 50%; height: 70%">
@@ -90,7 +90,7 @@
           <p> </p>
 
           <h5>Driver Integration</h5>
-          <p> Having removed the control electronics from the car, I then soldered the OUT sides to the pins of its left motor. Keeping these wheels unloaded by putting the car left side up, I was able to verify the motor driver spins the wheels, still using the power supply, by simply writing PWM in a given direction at speed 150, then writing PWM in the opposite direction at speed 150. 
+          <p> Having removed the control electronics from the car, I then soldered the OUT sides to the pins of its right motor. Keeping these wheels unloaded by putting the car right side up, I was able to verify the motor driver spins the wheels, still using the power supply, by simply writing PWM in a given direction at speed 150, then writing PWM in the opposite direction at speed 150. 
           </p>
 
           <p> </p>
@@ -177,7 +177,7 @@
           <p> </p>
 
           <h5>System Installation</h5>
-          <p> Having now completed the entire electrical assembly for the RC car, I installed it into the chassis. I did so bearing a few goals in mind: have a front and a side facing TOF, have the accelerometer be parallel to the ground, shield all components from as much EMI noise as possible, and provide easy access to batteries for replacement and the Artemis for reprogramming. This all needed to be done in addition to preventing components from falling off during motion, and not hindering any motion either. I also sought to twist wires to cancel EMI effects where possible. My final mounting is as follows:</p>
+          <p> Having now completed the entire electrical assembly for the RC car, I installed it into the chassis. I did so keeping a few goals in mind: have a front and a side facing TOF, have the accelerometer be parallel to the ground, shield all components from as much EMI noise as possible, and provide easy access to batteries for replacement and the Artemis for reprogramming. This all needed to be done in addition to preventing components from falling off during motion, and not hindering any motion either. I also sought to twist wires to cancel EMI effects where possible. My final mounting is as follows:</p>
 
           <img class="img-fluid" src="imgs/lab5/config.jpeg" style="width: 70%; height: 70%">
           <p> </p>
@@ -211,7 +211,7 @@
             <p> </p>
             <p> </p>
 
-            <p> As we see, there was a right drift of about 2 feet off the guiding line. As per the straight line code above, we see the PWM of both motors is equal. Thus, we neeeded a calibration factor to improve the straight line precision. After much manual trial and error, and keeping mindful of how a weaker battery would impact speed, the best factor I could find was setting the right side PWM to the left side multiplied by 1.7 (bounded within 255 as an int). While this result is still subpar, the new measured drift is an improved 1 foot, a 50% reduction</p>
+            <p> As we see, there was a right drift of about 2 feet off the guiding line. As per the straight line code above, we see the PWM of both motors is equal. Thus, we neeeded a calibration factor to improve the straight line precision. After much manual trial and error, and keeping mindful of how a weaker battery would impact speed, the best factor I could find was setting the right side PWM to the left side multiplied by 1.7 (bounded within 255 as an int). While this result is still subpar, the new measured drift is an improved 1 foot, a 50% reduction.</p>
 
             <p> </p>
 
