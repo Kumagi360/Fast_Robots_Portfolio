@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lab 6</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imgs/about.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: MyPortfolio - v4.10.0
+  * Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Navbar ======= -->
+
+  <main id="main">
+
+    <section class="section">
+      <div class="container">
+        <div class="row mb-4 p-5 align-items-center">
+          <a class="navbar-brand" href="index.html">Back to Portfolio</a>
+          <p> </p>
+          <h1>Lab 6</h1>
+
+          <p> </p>
+          <h4>Objective: </h4>
+          <p>
+            In this lab, I integrate closed loop control, PID, into the sensor monitoring scripts from previous labs. Experimenting with the control, I created a proportional controller allowing the robot to drive up to a prescribed distance from the obstacle ahead. 
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <h4>Prelab</h4>
+          <p> To collect debugging data, and to verify the performance of the controller, in the prelab I modified scripts from previous labs to send all sensor data from the robot to the Jupyter Notebook. While the lab guidance recommended sending data at once at the conclusion of the run, I chose intead to send data in packets of 3 timestamps while the run is ongoing. I opted for this to prevent onboard space being a limiting factor for run time, and to prevent there from being large (and thus longer lasting) transmissions  needing to be made. Importantly, I ensured my approach to data collection did not significantly reduce my sampling rate, worsening my controller. In addition to the calculated IMU values, and the forward-facing TOF reading, I also transmit the speed of the motors (both are the same in this lab), and the current error in the controller. I use the string characteristic as in previous labs, and ensure there are no blocking statements slowing sampling. 
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/12bb153d565d874e40ba41dc1aca967e.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/6bd3ce86e81c9c7f1fcd5ffb309dd565.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/5baa29e673cd5c74f993ce99a45d9935.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+
+          <h4>Lab Tasks</h4>
+
+          <h5>Position Control Task</h5>
+          <p> To create my PID controller, I began with the simplest form - propotional control. This would change the motor input proportional to the current error, the displacement between the robot currently and its target distance of 1 foot from the wall ahead. Given the lack of more complex maneuvers, additional sensor streams, and given the relative similarity in motor characteristics between my left and right motors, this controller was sufficient to achieve the target consistently. In order to determine the value for Kp, I wrote a simple command to change the value over Bluetooth, and reran the experiment many times, narrowing in on a fast controller without overshoot in binary search fashion.  </p>  
+
+          <script src="https://gist.github.com/Kumagi360/0865d860a7b752f99363ee26521b99fe.js"></script>
+            
+          <p> Below are videos of controllers with too high a Kp (0.80), too low a Kp (0.05), and finally a reasonable one (0.15), starting from a distance of 40 inches to the wall. The reasonable controller brought the vehicle to a distance of 12 inches +/- 0.5 inches. Too high of a Kp was characterised by not braking quickly enough to prevent disasterous overshoot, while too low of a Kp was characterised by not providing enough drive to the motors to move. I found the braking distance changed driving on the tile surface of the lab, compared to the carpet shown below, but at the motor speed of the 0.15 Kp controller from 3 feet, the overshoot on smoother surfaces was still minimal. 
+          </p>  
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls style="width: 50%; height: 50%">
+            <source src="imgs/lab6/high.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls style="width: 50%; height: 50%">
+            <source src="imgs/lab6/low.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls style="width: 50%; height: 50%">
+            <source src="imgs/lab6/right.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab6/tape.jpg" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <p>  The collected data for the run of the 0.15 Kp controller above had 416 timestamps over the 5 seconds collection interval, a sampling rate of one set per 12mS, are shown in the following plots. 
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab6/wall.jpg" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab6/error.jpg" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab6/speed.jpg" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab6/imu.jpg" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <p> While I believe with more time I can easily improve the speed of the robot with  Ki and Kd terms, the accuracy of my stopping distance was sufficient for this lab.  I reached a TOF measured distance of 314mm, 10mm off the target, from a starting distance of 1065mm within 2 seconds. The max motor PWM was 110, and the max speed achieved, imputed from the gradient of the time vs TOF graph, was ~50 cm/second.
+          </p>
+
+        </div>
+      </div>
+
+    </section>
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="mb-1">&copy; Kunal Gupta, 2023</p>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyPortfolio
+          -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+        <div class="col-sm-6 social text-md-end">
+          <a href="https://www.linkedin.com/in/kunalgupta360/"><span class="bi bi-linkedin"></span></a>
+          <a href="https://github.com/Kumagi360/Fast_Robots_Portfolio"><span class="bi bi-github"></span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
