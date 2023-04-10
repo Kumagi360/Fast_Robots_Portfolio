@@ -83,9 +83,20 @@
           <h4>Lab Tasks</h4>
 
           <h5>Position Control Task</h5>
-          <p> To create my PID controller, I began with the simplest form - propotional control. This would change the motor input proportional to the current error, the displacement between the robot currently and its target distance of 1 foot from the wall ahead. Given the lack of more complex maneuvers, additional sensor streams, and given the relative similarity in motor characteristics between my left and right motors, this controller was sufficient to achieve the target consistently. In order to determine the value for Kp, I wrote a simple command to change the value over Bluetooth, and reran the experiment many times, narrowing in on a fast controller without overshoot in binary search fashion.  </p>  
+          <p> To create my PID controller, I began with the simplest form - propotional control. This would change the motor input proportional to the current error, the displacement between the robot currently and its target distance of 1 foot from the wall ahead. This was intergrated into the PID collection script above, and so is presented as an excerpt below. Given the lack of more complex maneuvers, additional sensor streams, and given the relative similarity in motor characteristics between my left and right motors, this controller was sufficient to achieve the target consistently. In order to determine the value for Kp, I wrote a simple command to change the value over Bluetooth, and reran the experiment many times, narrowing in on a fast controller without overshoot in binary search fashion.  </p>  
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/6c09f76b1fadb9b849cbc7e1d3c9a738.js"></script>
+
+          <p> </p>
+          <p> </p>
 
           <script src="https://gist.github.com/Kumagi360/0865d860a7b752f99363ee26521b99fe.js"></script>
+
+          <p> </p>
+          <p> </p>
             
           <p> Below are videos of controllers with too high a Kp (0.80), too low a Kp (0.05), and finally a reasonable one (0.15), starting from a distance of 40 inches to the wall. The reasonable controller brought the vehicle to a distance of 12 inches +/- 0.5 inches. Too high of a Kp was characterised by not braking quickly enough to prevent disasterous overshoot, while too low of a Kp was characterised by not providing enough drive to the motors to move. I found the braking distance changed driving on the tile surface of the lab, compared to the carpet shown below, but at the motor speed of the 0.15 Kp controller from 3 feet, the overshoot on smoother surfaces was still minimal. 
           </p>  
