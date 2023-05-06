@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lab 7</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imgs/about.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: MyPortfolio - v4.10.0
+  * Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Navbar ======= -->
+
+  <main id="main">
+
+    <section class="section">
+      <div class="container">
+        <div class="row mb-4 p-5 align-items-center">
+          <a class="navbar-brand" href="index.html">Back to Portfolio</a>
+          <p> </p>
+          <h1>Lab 7</h1>
+
+          <p> </p>
+          <h4>Objective: </h4>
+          <p>
+            In this lab, I implement a Kalman Filter and verify it on previously collected data, then on the robot itself. By fusing a motion model with TOF sensor values, this filter allows for increased speed and accuracy of motion by imputing sensor values and accounting for noise.
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <h4>Estimating Drag and Momentum</h4>
+          <p> For the A and B matrices of the filter, I needed values for drag and momentum of my robot. Conducting a step response with the typical maximum  PWM of 120 seen, and only braking to avoid a max-speed wall collision, I collected the following data streams. 
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/stepDST.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/stepPWM.png" style="width: 50%; height: 50%">
+
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/stepSPD.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <p> Throughout the collection, I was struggling with outlier values returned by the TOF sensor. This caused the instantaneous speed calculation to return correspondingly imprecise speed values. Visibly, I belive I reached steady state before impact on this run. Having coducted a simple regression on the data, I retrieved values for the steady state speed, and 90% rise time. The steady speed on my home carpet surface was 1920mm/s, and to achieve 90% of this speed takes approximately 1.25s. I expect these values to be  undercoated as compared to running on the tiles of the lab for future labs, however, I can always recalibrate if the difference between measured and kalman values becomes signficant. Substituting these into the equations from lecture, I have D = 1/1920 = 0.000521, and M = -d*(1.25)/ln(0.1) = 0.000283. </p>  
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/stepAnSPD.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+
+          <h4>Initialize KF</h4>
+
+          <p> Over 5 seconds, I sample approximately 410 times, imputing 0.012 seconds per sample. With this, I create and discretize my A and B matrices as guided in the lab handout. I measure my distances in positive units (a greater value indicates a greater distance to the wall) and thus my C matrix has a positive 1 in the first index. </p>  
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/a9ca5ee3f5649331e8722ade9cd0aa7f.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+
+            
+          <p> For process noise, I began with the default values specified in lectures, 10 for both sigma_1 and sigma_2. Likewise for sensor noise I began with the default value of 20. Later in the lab I experiment with and refine these values. 
+          </p>  
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/b67a2310aa2311ffe7bb96a1815bda6f.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <h4>Implement and Testing the Filter</h4>
+
+          <p> Implementing the filter in Jupyter first allows us to verify the output accuracy against prior collected data. I used the code provided in the lab handout, cross-referenced with Anya's 2022 lab to make this sanity checker.
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/3a60f6fb58c6525a4acbd82b01c52ba5.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <p> The PID run I had from lab 6 had the following characteristics:
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/kf_pwm_s.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/kf_pwm_d.png" style="width: 50%; height: 50%">
+
+
+          <p> </p>
+          <p> </p>
+
+
+          <p> Applying the filter with the default noise values produced a surprisingly accurate output. The kalman data points largely overlap with the measured data points.  
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/10_10_20.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <p> To verify the filter was indeed working, I experimented with changing the noises to deporiotise sensor data, then to reflect the true sensor noise.  To deporiotise, I reduced sigma 1 and 2 to 1, while increasing sigma 3 to 100. This indicates the sensor readings have a far greater variance than the model itself, and expectedly we see the measured distance and kalman values diverge on the PID run. Then, returning sigma 1 and 2 to the default value, I collected TOF data from the robot at rest over a period and used numpy to calculate the data's variance - setting sigma 3 to 1.14 accordingly. As expected, this high degreee of confidence in TOF readings ties the kalman output very closely to the original measured dataset when verified on the same PID run.  
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/1_1_20.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/10_10_114.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <h4>Kalman Filter on Robot</h4> 
+
+          <p>I opted to do task 4b, implementing the filter on the robot. Given how well suited the filter was to the prior collected data, I expected to significantly  improve the distance sensing speed of my robot by doing so. Using the code provided in the lab handout, and guidance on translating the python kf function to arduino from Anya's 2022 lab, I incorporated the filter into my PID script.</p>
+
+          <script src="https://gist.github.com/Kumagi360/c5390cb3853778da693dc9c46d381322.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/f90d3302d2d8d2e2de08f15fad932523.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <p>The result, as expected, was satisfactory - stopping at about 11.5 inches from the wall without oscillation. While I still have improvements to make in increasing the frequency the kf function is called, I was able to verify the filter is producing reasonable values, and the performance of the robot is solid and repeatable. You will notice a strange region of PID control between 0 and 50 across this lab, this is because I chose to deal with deadband by tieing 30-50 PWM to 50, and below 30 to 0 (mirrored for negative speed). This allows for a minor speed improvement without causing significant overshoot or having to change kp.</p>
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/c_RB.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/pwm.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls style="width: 50%; height: 50%">
+            <source src="imgs/lab7/kf3.MOV" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab7/kf2.jpg" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+
+
+        </div>
+      </div>
+
+    </section>
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="mb-1">&copy; Kunal Gupta, 2023</p>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyPortfolio
+          -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+        <div class="col-sm-6 social text-md-end">
+          <a href="https://www.linkedin.com/in/kunalgupta360/"><span class="bi bi-linkedin"></span></a>
+          <a href="https://github.com/Kumagi360/Fast_Robots_Portfolio"><span class="bi bi-github"></span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
