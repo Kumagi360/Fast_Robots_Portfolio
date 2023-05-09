@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lab 5</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imgs/about.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: MyPortfolio - v4.10.0
+  * Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Navbar ======= -->
+
+  <main id="main">
+
+    <section class="section">
+      <div class="container">
+        <div class="row mb-4 p-5 align-items-center">
+          <a class="navbar-brand" href="index.html">Back to Portfolio</a>
+          <p> </p>
+          <h1>Lab 10</h1>
+
+          <p> </p>
+          <h4>Objective: </h4>
+          <p>
+            In this lab, I implement grid locailization using a Bayes filter in simulation. With a provided simulation platform, I completed functions in skeleton code to reflect equations and formulae covered in class.
+          </p>
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <h4>Completing the Skeleton Code</h4>
+          <h5> Compute Control </h5>
+          <p> The control function returns the physical steps needed to go from the previous to the current pose of the virtual robot. To complete this transformation we must first rotate in place to align the previous pose with the current's position, translate the positional difference, and finally rotate again to match the orientation of the current pose. 
+          </p>
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/c80d838204ca52c657a552ff42746030.js"></script>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <h5>Odometry Model</h5>
+          <p> As per the equation in the lab handout, the odometry model function uses a multiplication of gaussians to determine the probability of the current pose given the previous and the applied control. This incorporates noise in each of the motions.
+          </p>  
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/5ce47ce475bb6f7acb336706df7cfeab.js"></script>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <h5>Prediction Step</h5>
+          <p> In this step, we determine the probability of the virtual robot to be in every possible state given its previous state and motion. If there is a non-neligible likliehood of a state being correct, the odometry model is run on it. The probabilities of all states are normalized.
+          </p>  
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/7046c13b4bb866d8d33a67fc77557b0e.js"></script>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <h5>Update Step</h5>
+          <p> In this step, we update the belief for each step as a function of the probability of the state from the sensor model and prediction step. Once again, we normalize across all the states.
+          </p>  
+
+          <script src="https://gist.github.com/Kumagi360/abe2ed9fd019b598e6959f3270d07899.js"></script>
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <h4>Outcome Bayes Filter</h4>
+          <p> Running the resulting Bayes Filter on the simulation platform yielded a number of runs where the belief on robot pose closely aligned with the ground truth. In the following run, we see the map bounds in white, ground truth in green, belief in blue, and highlighted squares to represent belief in position. The dots on the green and blue paths are estimations of position after each motion. 
+          </p>  
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls>
+            <source src="imgs/lab7/sim2.mov" type="video/mp4">
+          </video>
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          I credit Anya (2022) and Rafael (2023) for guiding me in this lab, and clearing misconcpetions I had about the prediction step.
+
+        </div>
+      </div>
+
+    </section>
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="mb-1">&copy; Kunal Gupta, 2023</p>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyPortfolio
+          -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+        <div class="col-sm-6 social text-md-end">
+          <a href="https://www.linkedin.com/in/kunalgupta360/"><span class="bi bi-linkedin"></span></a>
+          <a href="https://github.com/Kumagi360/Fast_Robots_Portfolio"><span class="bi bi-github"></span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
