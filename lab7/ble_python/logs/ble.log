@@ -223,3 +223,28 @@
 2023-05-06 02:21:22,915 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
 2023-05-06 02:21:25,541 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
 2023-05-06 02:51:00,958 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-05-06 04:55:24,010 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-05-06 04:55:24,109 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-05-06 04:55:24,166 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
+2023-05-06 15:37:09,645 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-05-06 15:37:09,646 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.6.0-x86_64-i386-64bit
+2023-05-06 15:37:09,654 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-06 15:37:13,173 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-06 15:37:14,291 | MainThread   | [INFO    ] | _connect            |: Already connected to a BLE device
+2023-05-06 15:37:17,174 | MainThread   | [INFO    ] | _connect            |: Already connected to a BLE device
+2023-05-06 15:43:04,268 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-05-06 15:43:04,316 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-05-06 15:43:04,318 | MainThread   | [INFO    ] | exit_handler        |: Gracefully Exiting
+2023-05-06 15:43:26,407 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=7, micro=6, releaselevel='final', serial=0)
+2023-05-06 15:43:26,412 | MainThread   | [DEBUG   ] | __init__            |: System Info: Darwin-19.6.0-x86_64-i386-64bit
+2023-05-06 15:43:26,413 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-06 15:43:29,054 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-06 15:50:43,291 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-05-06 15:50:46,398 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-06 15:50:49,116 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-06 15:55:39,877 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-05-06 15:55:42,402 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-06 15:55:48,914 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-06 15:57:07,676 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-05-06 15:57:07,704 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from AB6C95E9-A4ED-4F7A-B208-0AFEAFDDA3AD
+2023-05-06 15:57:07,705 | MainThread   | [INFO    ] | exit_handler        |: Gracefully Exiting
