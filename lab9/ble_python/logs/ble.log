@@ -1,0 +1,220 @@
+2023-05-12 00:33:32,082 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:34:07,570 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:36:01,389 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:36:03,849 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:36:27,173 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:37:57,365 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:38:08,688 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:38:11,394 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:38:25,491 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:40:02,611 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:40:05,228 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:40:24,035 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:43:37,367 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:43:45,908 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:45:09,114 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:45:33,120 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:45:35,842 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:47:25,121 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:47:48,477 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:47:51,215 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:49:53,699 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:50:31,626 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:50:34,173 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:50:48,755 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:51:47,890 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:51:54,499 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:52:08,532 | MainThread   | [INFO    ] | _connect            |: Already connected to a BLE device
+2023-05-12 00:52:24,841 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:52:53,437 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:52:55,940 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:53:53,839 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:53:58,650 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:54:01,128 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 00:55:49,140 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 00:56:02,300 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 00:56:10,892 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:02:05,164 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:02:14,854 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:02:19,348 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:02:45,639 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:03:12,982 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:03:15,837 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:04:18,504 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:04:24,000 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:04:26,533 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:08:11,382 | MainThread   | [INFO    ] | _connect            |: Already connected to a BLE device
+2023-05-12 01:08:12,393 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:08:14,622 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:08:27,128 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:08:29,711 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:08:44,232 | MainThread   | [INFO    ] | _connect            |: Already connected to a BLE device
+2023-05-12 01:09:24,698 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:11:02,140 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:11:04,616 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:12:05,700 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:12:09,403 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:12:13,855 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:14:11,691 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:14:15,350 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:14:38,348 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:14:40,823 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:14:45,318 | MainThread   | [INFO    ] | _connect            |: Already connected to a BLE device
+2023-05-12 01:14:58,659 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:16:28,535 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:16:40,899 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:17:07,109 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:17:26,816 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:17:29,470 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:18:23,156 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:19:02,778 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:19:07,327 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:19:19,854 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:26:15,886 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:26:18,412 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 01:28:29,395 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 01:28:33,926 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 01:28:38,600 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 03:10:17,756 | MainThread   | [INFO    ] | exit_handler        |: Exiting...
+2023-05-12 03:10:17,760 | MainThread   | [WARNING ] | exit_handler        |: Could not disconnect before exiting
+2023-05-12 03:10:17,760 | MainThread   | [WARNING ] | exit_handler        |: Not connected to a BLE device
+2023-05-12 11:51:10,359 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=9, micro=6, releaselevel='final', serial=0)
+2023-05-12 11:51:10,359 | MainThread   | [DEBUG   ] | __init__            |: System Info: macOS-13.0-arm64-arm-64bit
+2023-05-12 11:51:10,360 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 11:51:12,964 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 11:55:09,238 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 11:55:12,807 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 12:01:01,738 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 12:01:22,239 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 12:01:35,856 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 12:03:16,616 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 12:03:19,317 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 12:03:55,584 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 12:07:49,388 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 12:07:53,878 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 12:08:42,250 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:09:22,174 | MainThread   | [DEBUG   ] | __init__            |: Python Info: sys.version_info(major=3, minor=9, micro=6, releaselevel='final', serial=0)
+2023-05-12 13:09:22,175 | MainThread   | [DEBUG   ] | __init__            |: System Info: macOS-13.0-arm64-arm-64bit
+2023-05-12 13:09:22,175 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:09:28,864 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:10:39,746 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:10:48,610 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:10:51,171 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:11:18,324 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:13:46,075 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:13:48,543 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:14:19,068 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:16:07,718 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:16:10,296 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:18:24,164 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:18:44,491 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:18:47,059 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:21:16,636 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:21:24,138 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:21:32,717 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:24:39,529 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:24:44,903 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:25:20,088 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:25:37,341 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:26:21,036 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:26:48,374 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:26:51,092 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:30:14,086 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:30:28,965 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:30:31,621 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:36:44,516 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:37:00,143 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:37:02,667 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:39:50,045 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:40:06,497 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:40:09,238 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:43:55,163 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:44:05,529 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:44:10,619 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:50:23,773 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:51:05,274 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:51:07,744 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:52:45,316 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:52:49,192 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:53:12,037 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:53:16,637 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:55:23,129 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:55:46,887 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:55:49,515 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 13:57:44,533 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 13:58:04,760 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 13:58:07,439 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:02:02,810 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:02:08,816 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:02:19,274 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:08:40,854 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:08:59,368 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:09:02,168 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:14:04,201 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:14:36,360 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:14:38,961 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:15:41,778 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:16:05,889 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:16:08,480 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:22:35,287 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:22:50,794 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:23:12,954 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:23:15,504 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:23:57,340 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:35:24,737 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:35:27,242 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:38:46,365 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:38:48,169 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:38:59,053 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:39:01,711 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:40:13,857 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:40:31,190 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:40:33,675 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:43:40,644 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:43:43,344 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:43:54,829 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:43:57,344 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:45:00,520 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:45:07,932 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:45:16,410 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:46:42,566 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:48:17,944 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:48:20,472 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 14:52:41,763 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 14:54:23,535 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 14:54:26,468 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 15:04:15,768 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 15:04:51,481 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 15:04:54,062 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 15:07:29,677 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 15:08:54,609 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 15:08:57,195 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 15:19:39,027 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 15:19:45,588 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 15:19:48,144 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 15:31:46,627 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 15:31:48,776 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 15:31:53,482 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 15:34:05,075 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 15:34:22,794 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 15:34:25,370 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 15:42:51,273 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 15:42:55,769 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 15:42:58,305 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 15:45:08,235 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 15:49:00,666 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 15:49:03,407 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 15:54:06,122 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 15:54:09,476 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 15:54:13,920 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 15:58:50,305 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 15:58:51,841 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 15:58:58,361 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 16:01:13,920 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 16:01:15,909 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 16:01:22,436 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
+2023-05-12 16:05:31,895 | MainThread   | [INFO    ] | disconnect_handler  |: Disconnected from 9FB4D05A-FE1D-DF59-F920-0B9FD132922D
+2023-05-12 16:05:37,272 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 16:06:36,058 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 16:06:55,413 | MainThread   | [INFO    ] | _connect            |: Looking for Artemis Nano Peripheral Device: C0:83:D5:66:86:3C
+2023-05-12 16:06:57,949 | MainThread   | [INFO    ] | _connect            |: Connected to C0:83:D5:66:86:3C
