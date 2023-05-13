@@ -1177,41 +1177,39 @@ void stunt(){
   distanceSensor2.startRanging();
 
   int speed = 255;
+
+
+
   int stepSpeed = 255;
   int proximity = 0;
   bool flipped = false;
   
+  // speed towards wall
   driveForward(stepSpeed);
   
+  // while within 5 seconds of receiving command
   while (millis() - start_time < timeWindow){
 
-    int error = ONEDistance - targetDistance;
-
-    if (ONEDistance < 1000 & ONEDistance > 0 & flipped == false){
+    // if have not already flipped, within 800mm of wall, and after 800mS of beginning drive
+    if (flipped == false & ONEDistance > 0 & ONEDistance < 800 & (millis() - start_time) > 800){
       proximity += 1;
-      if (proximity > 1){
-        stopDriving();
-        delay(200);
-        // delay(10);
-        speed = 0;
-        driveBackward(stepSpeed);
-        speed = -stepSpeed;
-        //delay(800);
-        // stopDriving();
-        // delay(10);
-        //speed = 0;
-        flipped = true;
-        // driveForward(stepSpeed);
-        // // delay(100);
-        // driveBackward(stepSpeed);
-        // // delay(300);
-        // stopDriving();
-        // for (int i = 0; i < 100000; i++){}
-        // stopDriving();
-        // //for (int i = 0; i < 1000; i++){}
-        // driveForward(stepSpeed);
-        // flipped = true;
 
+      // if entered this conditional twice in succession
+      if (proximity > 1){
+
+        // flip by suddenly reversing for 500mS
+        speed = -stepSpeed;
+        driveBackward(stepSpeed);
+        delay(500);
+
+        // prevent pivoting during flip by active braking until settled
+        speed = 0;
+        stopDriving();
+        delay(50);
+        
+        // change state and speed away from wall
+        flipped = true;
+        driveBackward(stepSpeed);
       }
     }
     else{
