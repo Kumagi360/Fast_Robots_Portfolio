@@ -51,13 +51,192 @@
           <p> </p>
           <h4>Objective: </h4>
           <p>
-            In this lab, I created a line map of the enviornment around my robot by combining TOF data taken from a number of number of points within the marked zone. 
+            In this lab, I created a line map of the arena by combining TOF data points taken from 4 positions within. To collect datapoints, I did a 360 degree spot turn using PID to maintain angular speed, while sampling from the front-facing TOF rapidly.
           </p>
 
           <p> </p>
           <p> </p>
 
-          <h4> THE REST OF THIS LAB IS CURRENTLY BEING PUSHED TO GIT!</h4>
+          <h4> Control</h4>
+          <p> 
+            For this lab, I opted to do proportional control on angular speed. Accessing the angular speed readout on the gyroscope module of the IMU, I set error as the difference between the current speed and my target speed of 25 degrees per second. Experimenting with Kp, I arrived at 3.0 being optimal for maintaining this speed, adjusting my default PWM of 100. To spot spin clockwise, the left side is spun forward, while the right side backwards. As the left is slightly more powerful than the right, the right PWM is set 15 higher than the left consistently. All wheels were taped over to reduce their grip levels and allow for easier spot turning. The TOF sensor is sampled whenever ready as in previous labs, and the kalman filter was disabled (as the dynamics are not the same as previous labs). At a rotation of 25 degrees per second, and about 70 measurements per second, I expect a measurement window of 14400 milliseconds to sweep a 360 degree area and produce about 1000 discrete measurements. In the 14 milliseconds between measurements I expect to have changed heading by ~0.35 degrees. However, as seen in the data below, the instantaneous angular speed readings from IMU are either noisy, have too short of a sampling period, or my control is not very robust, as there is a relatively significant degree of variability in my angular speed. I was informed including a low pass filter in the gyro settings would likely not improve this behavior dramatically, and given the 25 mean angular speed, I continued the lab with this control setup. I had also seen in previous labs that the TOFs measure arbitrary values when pointed at distances greater than ~2 metres, thus I expect all such measurements taken in a 4x4 room or in the arena would be invalid.
+          </p>
+
+          
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/5acff7aade6e37dd7db3d83914226d3e.js"></script>
+
+          
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/b4801f2c1cd4985dcff4d99ab036ba9c.js"></script>
+          
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab9/ang1.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+
+
+          <p>
+            In seeking to improve TOF accuracy in the arena I experimented with the distance modes on the TOF, and found no significant difference. I also conducted 2 spins from each location in the arena, and found no significant differences in readouts - except for the distant regions that return arbitrary readings, for which neither run was more accurate. </p>
+
+            <p> </p>
+            <p> </p>
+  
+
+
+          <h4> Reading Distances</h4>
+          <p> The average of the two runs at each of the four arena coordinates (-3, -2), (5, -3), (5, 3), (0, 3) were as follows: </p>
+
+          <p> </p>
+          <p> </p>
+
+
+          <h5>(-3, -2): </h5>
+          <img class="img-fluid" src="imgs/lab9/n3n2_s.png" style="width: 40%; height: 40%">
+
+
+          <img class="img-fluid" src="imgs/lab9/n3n2_p.png" style="width: 40%; height: 40%">
+          
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls style="width: 50%; height: 50%">
+            <source src="imgs/lab9/n3n2.mov" type="video/mp4">
+          </video>
+          
+          <img class="img-fluid" src="imgs/lab9/n3n2_a.png" style="width: 50%; height: 50%">
+
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+
+          <h5>(5, -3): </h5>
+
+          <img class="img-fluid" src="imgs/lab9/p5n3_s.png" style="width: 40%; height: 40%">
+          
+
+          <img class="img-fluid" src="imgs/lab9/p5n3_p.png" style="width: 40%; height: 40%">
+          
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls style="width: 50%; height: 50%">
+            <source src="imgs/lab9/p5n3.MOV" type="video/mp4">
+          </video>
+          
+          <img class="img-fluid" src="imgs/lab9/p5n3_a.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+
+          <h5>(5, 3): </h5>
+
+          <img class="img-fluid" src="imgs/lab9/p5p3_s.png" style="width: 40%; height: 40%">
+          
+
+          <img class="img-fluid" src="imgs/lab9/p5p3_p.png" style="width: 40%; height: 40%">
+          
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls style="width: 50%; height: 50%">
+            <source src="imgs/lab9/p5p3.mov" type="video/mp4">
+          </video>
+          
+          <img class="img-fluid" src="imgs/lab9/p5p3_a.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+
+          <h5>(0, 3): </h5>
+
+          <img class="img-fluid" src="imgs/lab9/p0p3_s.png" style="width: 40%; height: 40%">
+          
+
+          <img class="img-fluid" src="imgs/lab9/p0p3_p.png" style="width: 40%; height: 40%">
+          
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls style="width: 50%; height: 50%">
+            <source src="imgs/lab9/p0p3.mov" type="video/mp4">
+          </video>
+          
+          <img class="img-fluid" src="imgs/lab9/p0p3_a.png" style="width: 50%; height: 50%">
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          <p> </p>
+          
+
+          <h4> Merge and Plot</h4>
+          <p> To convert the distances recorded from each of these positions into a map, I simply applied x = distance * cos(theta) and y = distance * sin(theta), and added the starting coordinates, for each data point in the jupyter notebook as follows. The heading was computed by assuming 25 degree per second rotation up to the timestamp of the datapoint.</p>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/dbbeca8ffb9d124cab624afcb53c753e.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          <p> By maintaining lists of which position produced which data points, the lists could then be put together into a single scatter plot and labelled accordingly, as follows.</p>
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab9/UL.png" style="width: 70%; height: 70%">
+
+          <p> </p>
+          <p> </p>
+
+          <p> Eyeballing the scatterplot, I marked vertices of the walls and boxes, and produced the following lists of line start and endpoints. I finally amended the scatterplot to incorporate these lines. Cross-referencing with Rafael's coordinates, they are reasonably accurate, and ready to be imported into lab 11.</p>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/0cc3a2d52c2284f6102c29d115c8302b.js"></script>
+
+          <p> </p>
+          <p> </p>
+
+          
+          <img class="img-fluid" src="imgs/lab9/L.png" style="width: 70%; height: 70%">
+
+          <p> </p>
+          <p> </p>
+
+
+
+
+
+
+            
 
 
         </div>
