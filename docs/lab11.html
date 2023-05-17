@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lab 9</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imgs/about.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: MyPortfolio - v4.10.0
+  * Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Navbar ======= -->
+
+  <main id="main">
+
+    <section class="section">
+      <div class="container">
+        <div class="row mb-4 p-5 align-items-center">
+          <a class="navbar-brand" href="index.html">Back to Portfolio</a>
+          <p> </p>
+          <h1>Lab 11</h1>
+
+          <p> </p>
+          <h4>Objective: </h4>
+          <p>
+            In this lab, I merge mapping in the physical world with localization in the simulator. By doing so, I create a direct pipeline for the robot to determine its position in the arena over bluetooth, and to visualize it in the simulator, rapidly. 
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <h4> Prelab</h4>
+          <p> 
+            For the prelab, I integrated provided files for the simulator to run with the guarantee of correctness. Among these files were a  localization module for the virtual robot. The open-ended part of the localization side of this lab was the input method for the sensor readings and bearings. For this, the new files included skeleton code to be completed for the simulation to be functional. To verify the simulator had all its modules in place, I ran the provided simulator notebook, and recovered the following reasonable simulation run. As previously, green dots are ground truth, blue dots are belief, and red dots are odometry readouts.
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab11/l11_poc.png">
+
+          <p> </p>
+          <p> </p>
+
+          <h4> Observation Loop</h4>
+          <p> 
+            For this lab, we needed 18 points of data from each location to align with the existing simulator setup. As the simulator assumes spinning counterclockwise from a known 0 degree heading, and measuring forward-facing distance at each 20 degree increment, a control loop to collect accurate data was required. I opted to adapt the angular speed proportional control code from my mapping lab 9. It was adapted to maintain a spin of 20 degrees per second, with a default spin PWM of 100,  and take a reading every second for 18 seconds to produce 18 data points uniformly across 360 degrees. The code is otherwise functionally identical to lab 9.
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/6d2ba6274470e48d890e4863ce189bc1.js"></script>
+
+          
+          <p> </p>
+          <p> </p>
+
+          <h4> Observation to Simulation Data Handoff</h4>
+
+          <p>
+            I chose to have a new blueooth command for the observation loop described above, and have the collected data be ported into a text file. This text file, containing 18 distances in mm, all approximately 20 degrees apart, has vertical bar separators. As this is stored in the base directory with the simulator notebook, it is accessed directly by the 'perform_observation_loop()' function in the simulator. Here, the distances are retrieved and converted to metres and, although the bearings aren't used in this lab, are also returned in degrees. </p>
+
+            <p> </p>
+            <p> </p>
+  
+            <img class="img-fluid" src="imgs/lab11/tx.png" >
+
+            <p> </p>
+            <p> </p>
+
+            <script src="https://gist.github.com/Kumagi360/1f586f80a3c6e922ea7abc76039e271a.js"></script>
+
+            <p> </p>
+            <p> </p>
+  
+
+
+          <h4> Localizations</h4>
+          <p> Placing the robot in each of the four marked spots in the arena twice, (5,3), (5, -3), (0,3), (-3,-2), the following were my best localizations for each.</p>
+
+          <p> </p>
+          <p> </p>
+
+          <h5>(5,3)</h5>
+
+          <img class="img-fluid" src="imgs/lab11/5_3_d.png" >
+          
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab11/5_3_a.png" >
+
+          <p> </p>
+          <p> </p>
+
+          <p> The ground truth pose is (1.524, 0.914, 0.000)</p>
+          <p> The computed belief pose is (1.524, 0.914, 10.000)</p>
+          <p> The resultant error is (0.000, 0.000. -10.000)</p>
+
+          <p> This result is interesting for multiple reasons. While the position is perfect, the orientation is off by ten degrees. This could be indicative of an offset introduced by the imprecision of the robot observation control loop method, or its true initial orientation. The belief confidence in this position is also 1.0, indicating absolute certainty in this returned belief. I did not expect this degree of certainty, as any sensor reading deviating even slightly from the arena model should introduce some alternative possibilities for grid location. I believe this indicates the flukish nature of the better of my two localizations from this position, as the other also localized position correctly, but with a lower degree of certainty. </p>
+
+          <p> </p>
+          <p> </p>
+
+          <h5>(5,-3)</h5>
+
+          <img class="img-fluid" src="imgs/lab11/p5n3_a.png" >
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab11/p5n3_d.png" >
+          
+          <p> </p>
+          <p> </p>
+
+
+
+          <p> The ground truth pose is (1.524, -0.914, 0.000)</p>
+          <p> The computed belief pose is (0.305, -1.219, 110.000)</p>
+          <p> The resultant error is (1.219, 0.305. -110.000)</p>
+
+          <p> This result is less promising that the first. Both localizations at this position resulted in the same estimated position, 4 feet in the x direction, and 1 foot in the y direction, offset. It is also well over a right turn off on orientation. I expect this is due to the nature of that corner of the arena to look very similar to a rotating low-resolution TOF sensor from a number of positons. This is as both unobstructed views along the sides of box 1 are longer than the range for which the TOF returns true values. Thus, for a number of positions, the sensor can return arbitrary values, confusing for localization. However, once again, the confidence in the position is unreasonably high, which indicates perhaps there was a systematic offset in the readings of the TOF that suggest the position believed is highly likely.</p>
+
+          <p> </p>
+          <p> </p>
+
+          <h5>(0,3)</h5>
+
+          
+          <img class="img-fluid" src="imgs/lab11/p0p3_d.png">
+
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab11/p0p3_a.png">
+          
+          <p> </p>
+          <p> </p>
+
+
+          <p> The ground truth pose is (0.000, 0.914, 0.000)</p>
+          <p> The computed belief pose is (0.000, 0.914, -170.000)</p>
+          <p> The resultant error is (0.000, 0.000, 170.000)</p>
+
+          <p> A similarly successful outcome as (5,3), we again see near certainty in the correct position, but the incorrect orientation. As this orientation offset is far more significantly offset, it is possible I oriented the robot opposite (180.000 ground truth) in reality for this best run, but unfortunately did not capture a picture of it. Regardless, the analysis of this localization is identical to that for (5,3).</p>
+
+          <p> </p>
+          <p> </p>
+
+          <h5>(-3,-2)</h5>
+
+          <img class="img-fluid" src="imgs/lab11/n3n2.png" >
+          
+          <p> </p>
+          <p> </p>
+
+          <img class="img-fluid" src="imgs/lab11/n3n2_b.png">
+
+          <p> </p>
+          <p> </p>
+
+
+
+
+
+          <p> The ground truth pose is (-0.914, -0.914, 0.000)</p>
+          <p> The computed belief pose is (-0.914, -0.305, 150.000)</p>
+          <p> The resultant error is (0.000, -0.609, -150.000)</p>
+
+          <p> A similarly successful outcome as (5,-3), we again see an offset in position for the better run, and an incorrect orientation. As this orientation offset is again near 180 degrees, it is possible I oriented the robot opposite (180.000 ground truth) in reality for this best run, but unfortunately did not capture a picture of it. The nature of the position offset to be solely in the y axis suggests that possibly box 2 was translated slightly upwards in the real world, as compared to the arena model. An alternative explanation is that the  2/3 data points that constitute the relative position of that box were off by about half a foot, and thus cause the box to appear further than it really is.</p>
+
+          <p> </p>
+          <p> </p>
+
+
+          <h5>Overall</h5>
+          <p> I don't believe these localization results necessarily demonstrate that some poses localize better than others. Each location had differences in pose across runs (even if only orientation), and I believe a large degree of the uncertainty is due to the low-resolution of the observations. Taking a single, potentially noisy, datapoint from which the extrapolate the distance to the nearest obstacle across a whole 20 degree range is less than the robot is capable of. Also, given the jerky nature of the robot rotating in place, I am not confident the readings were as precisely separated as the localization assumes. If I were to do this experiment again, in order to have better results across all positions, I would take more than 18 readings, and change the localization code to take the true reading bearings into consideration.</p>
+
+
+
+
+
+            
+
+
+        </div>
+      </div>
+
+    </section>
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="mb-1">&copy; Kunal Gupta, 2023</p>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyPortfolio
+          -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+        <div class="col-sm-6 social text-md-end">
+          <a href="https://www.linkedin.com/in/kunalgupta360/"><span class="bi bi-linkedin"></span></a>
+          <a href="https://github.com/Kumagi360/Fast_Robots_Portfolio"><span class="bi bi-github"></span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

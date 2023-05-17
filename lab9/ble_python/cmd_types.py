@@ -18,7 +18,9 @@ class CMD(Enum):
     UPDATE_KP = 14
     STEP = 15
     KF_PID = 16
-    STUNT = 17,
+    STUNT = 17
     ANGSPEED = 18
+    LOCALIZATION = 19
+    LTWELVE = 20
     
     
