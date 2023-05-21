@@ -92,8 +92,8 @@ static long previousMillis = 0;
 unsigned long currentMillis = 0;
 
 // for driving
-const int LeftPin1 = 0;
-const int LeftPin2 = 15;
+const int LeftPin1 = 0; // 0
+const int LeftPin2 = 15; // 15
 const int RightPin1 = 3;
 const int RightPin2 = 16;
 
@@ -102,18 +102,18 @@ float kp = 0.15;
 //////////// Global Variables ////////////
 
 void spotRight(int speed){
-  analogWrite(RightPin1, LOW);
+  digitalWrite(RightPin1, LOW);
   digitalWrite(LeftPin2, LOW);
 
-  analogWrite(RightPin2, min(speed + 15, 255));
+  analogWrite(RightPin2, min(speed + 20, 255));
   analogWrite(LeftPin1, speed);
 }
 
 void spotLeft(int speed){
   digitalWrite(RightPin2, LOW);
-  analogWrite(LeftPin1, LOW);
+  digitalWrite(LeftPin1, LOW);
 
-  analogWrite(RightPin1, min(speed + 15, 255));
+  analogWrite(RightPin1, min(speed + 20, 255));
   analogWrite(LeftPin2, speed);
 }
 
@@ -157,7 +157,7 @@ void driveForward(int speed){
   digitalWrite(RightPin2, LOW);
   digitalWrite(LeftPin2, LOW);
 
-  analogWrite(RightPin1, speed);
+  analogWrite(RightPin1, speed + 20);
   analogWrite(LeftPin1, speed);
 }
 
@@ -1508,10 +1508,10 @@ void l12(){
   float kp_a = 3.0;
   robot_cmd.get_next_value(kp_a);
 
-  int targetYaw = 225;
+  float targetYaw = 225.0;
 
-  int start_time = millis();
-  int last_time = start_time;
+  unsigned long start_time = millis();
+  unsigned long last_time = start_time;
   int instances = 0;
 
   int ONEDistance = 0;
@@ -1522,7 +1522,7 @@ void l12(){
 
   float curPitchG = getPitch(&myICM);
   float curRollG = getRoll(&myICM);
-  int curYawG = 180;
+  float curYawG = 180.0;
 
   float complementPitch = getPitch(&myICM);
   float complementRoll = getRoll(&myICM);
@@ -1540,76 +1540,161 @@ void l12(){
 
   int entries = 3;
 
-  int timeWindow = 6000;
+  int timeWindow = 15000;
 
   int error = targetYaw;
 
   int RotateSpeed = 0;
 
-  int base = 0;
+  int base = 120;
 
-  bool first = false;
+  bool one = false;
+  bool two = false;
+  bool three = false;
+  bool four = false;
+  bool five = false;
+  bool six = false;
+  bool seven = false;
+
+  bool onTrack = false;
   
+  int straightLineMotion = 0;
+
+  unsigned long forwardTime = 0;
+
+  bool begunForwards = false;
 
   distanceSensor1.startRanging();
   distanceSensor2.startRanging();
 
-
   while (millis() - start_time < timeWindow){
 
-    if (millis() - start_time > 3000 & first == false){
-      curYawG = 180;
-      targetYaw = 225;
-      first = true;
+    if (millis() - start_time > 1500 & millis() - forwardTime > 1000 & one == false & begunForwards == true){
+      curYawG = 180.0;
+      targetYaw = 135.0;
+      one = true;
+
+      begunForwards = false;
     }
 
-    // CW -> increasing gyro past target -> positive error
+    if (millis() - start_time > 2000 & millis() - forwardTime > 1000 & one == true & two == false & begunForwards == true){
+      curYawG = 180.0;
+      targetYaw = 116.5;
+      two = true;
+
+      begunForwards = false;
+    }
+
+    if (millis() - start_time > 4500 & millis() - forwardTime > 1200 & two == true & three == false & begunForwards == true){
+      curYawG = 180.0;
+      targetYaw = 243.5;
+      three = true;
+
+      begunForwards = false;
+    }
+
+    if (millis() - start_time > 7000 & millis() - forwardTime > 2000 & three == true & four == false & begunForwards == true){
+      curYawG = 180.0;
+      targetYaw = 243.0;
+      four = true;
+
+      begunForwards = false;
+    }
+
+    if (millis() - start_time > 9000 & millis() - forwardTime > 2000 & four == true & five == false & begunForwards == true){
+      curYawG = 180.0;
+      targetYaw = 270.0;
+      five = true;
+
+      begunForwards = false;
+    }
+
+    if (millis() - start_time > 11000 & millis() - forwardTime > 2000 & five == true & six == false & begunForwards == true){
+      curYawG = 180.0;
+      targetYaw = 270.0;
+      six = true;
+
+      begunForwards = false;
+    }
+
+    if (millis() - start_time > 14000 & millis() - forwardTime > 2000 & six == true & seven == false & begunForwards == true){
+      curYawG = 180.0;
+      targetYaw = 270.0;
+      seven = true;
+
+      begunForwards = false;
+    }
+
+    // 180 w 225 target is negative error initially
     int error = curYawG - targetYaw;
 
-    // positive error -> decreased speed 
+    // negative error -> negative speed -> negative rotation (counterclockwise)
     int RotateSpeed = (int) (kp_a * error);
 
     if (RotateSpeed < -255) RotateSpeed = -255;
     else if (RotateSpeed > 255) RotateSpeed = 255;
 
-    if (abs(error) < 5){
+    // up the base speed if on track
+    if (abs(error) < 15){
+
+      // increment once to indicate correct direction
+      straightLineMotion += 1;
+
+      // if been in correct direction 5 times in a row, error has stabalized, start forward timer
+      if (straightLineMotion > 10 & begunForwards == false){
+        forwardTime = millis();
+        begunForwards = true;
+      }
+
       digitalWrite(LED_BUILTIN, HIGH);
-      base = 150;
+      onTrack = true;
     }
     else{
+      // reset correct direction if diverges (still unstable)
+      straightLineMotion = 0;
+
       base = 0;
       digitalWrite(LED_BUILTIN, LOW);
+      onTrack = false;
     }
 
-    
-    if (RotateSpeed >= 0){
-      leftPWM = min(255, RotateSpeed + base);
-      rightPWM = base - RotateSpeed;
-      spotRightDrive(RotateSpeed, base);
-      
+    // if needs reorienting, spot turn to reorient
+    if (onTrack == false){
+        // spin rightwards if positive error
+        if (RotateSpeed >= 0){
+          leftPWM = min(255, RotateSpeed);
+          rightPWM = 0;
+          spotRight(RotateSpeed);
+          
+        }
+        // spin leftwards if negative error
+        else{
+          rightPWM = min(255, RotateSpeed);
+          leftPWM = 0;
+          spotLeft(-RotateSpeed);
+        }
+    // otherwise, continue driving straight
+    } else {
+        driveForward(base);
+        leftPWM = base;
+        rightPWM = base;
     }
-    else{
-      rightPWM = min(255, RotateSpeed + base);
-      leftPWM = base - RotateSpeed;
-      spotLeftDrive(-RotateSpeed, base);
-    }
+
 
      if (myICM.dataReady()){
         myICM.getAGMT();
         
         // Sending IMU data 
-        curPitchG = getPitchGyr(&myICM, curPitchG, millis() - last_time);
-        curRollG = getRollGyr(&myICM, curRollG, millis() - last_time);
+        curPitchG = 0; //getPitchGyr(&myICM, curPitchG, millis() - last_time);
+        curRollG = 0; // getRollGyr(&myICM, curRollG, millis() - last_time);
         curYawG = getYawGyr(&myICM, curYawG,  millis() - last_time);
-        // float mX = getMagX(&myICM);
-        // Serial.println(mX);
-        if (curYawG < 0) {curYawG = 360 + curYawG;}
+        if (curYawG < 0.0) {curYawG = 360.0 + curYawG;}
         last_time = millis();
 
         //sendFFTData(millis(), getPitch(&myICM), getRoll(&myICM), curPitchG, curRollG, curYawG);
 
-        complementPitch = curPitchG*0.9 + getPitch(&myICM)*0.1;
-        complementRoll = curRollG*0.9 + getRoll(&myICM)*0.1;
+        //complementPitch = curPitchG*0.9 + getPitch(&myICM)*0.1;
+        //complementRoll = curRollG*0.9 + getRoll(&myICM)*0.1;
 
       }  
             
@@ -1624,7 +1709,7 @@ void l12(){
     }
 
     if (distanceSensor2.checkForDataReady()){
-        TWODistance = distanceSensor2.getDistance(); 
+        TWODistance = 0; // distanceSensor2.getDistance(); 
         distanceSensor2.clearInterrupt();
         distanceSensor2.stopRanging();
         distanceSensor2.startRanging();
@@ -1660,6 +1745,317 @@ void l12(){
 
 }
 
+
+void lt2(){
+
+
+  /*
+  orientation PID to match next heading
+  open loop drive to reach next waypoint 
+
+  Waypoints:
+  1. (-4, -3)    <--start
+  2. (-2, -1)
+  3. (1, -1)
+  4. (2, -3)
+  5. (5, -3)
+  6. (5, -2)
+  7. (5, 3)
+  8. (0, 3)
+  9. (0, 0)      <--end
+
+  Headings (0 is facing lab):  
+  */
+
+  float kp_a = 3.0;
+  robot_cmd.get_next_value(kp_a);
+
+  float targetYaw = 225.0;
+
+  unsigned long start_time = millis();
+  unsigned long last_time = start_time;
+  int instances = 0;
+
+  int ONEDistance = 0;
+  int TWODistance = 0;
+
+  int leftPWM = 0;
+  int rightPWM = 0;
+
+  float curPitchG = getPitch(&myICM);
+  float curRollG = getRoll(&myICM);
+  float curYawG = 180.0;
+
+  float complementPitch = getPitch(&myICM);
+  float complementRoll = getRoll(&myICM);
+
+  int timeArr[5];
+  int targetArr[5];
+  int errorArr[5];
+  int yawArr[5];
+  int ONEDistArr[5];
+  int TWODistArr[5];
+  int leftPWMArr[5];
+  int rightPWMArr[5];
+
+  int logCount = 0;
+
+  int entries = 3;
+
+  int timeWindow = 20000;
+
+  int error = targetYaw;
+
+  int RotateSpeed = 0;
+
+  int base = 170;
+
+  bool one = false;
+  bool two = false;
+  bool three = false;
+  bool four = false;
+
+  bool onTrack = false;
+  
+  int straightLineMotion = 0;
+
+  unsigned long forwardTime = 0;
+
+  bool begunForwards = false;
+
+  distanceSensor1.startRanging();
+  distanceSensor2.startRanging();
+
+
+  while (millis() - start_time < timeWindow){
+
+    if (millis() - start_time > 0 & one == false){
+      // stopDriving();
+      // delay(100);
+      curYawG = 180.0;
+      targetYaw = 135.0;
+
+      begunForwards = false;
+
+      stopDriving();
+      spotLeft(110);
+      delay(1500);
+
+      stopDriving();
+      delay(1000);
+      //driveForward(base);
+
+      driveForward(120);
+      delay(750);
+
+      stopDriving();
+      delay(1000);
+
+      one = true;
+  
+    }
+
+    if (millis() - start_time > 2000 & two == false){
+
+      curYawG = 180.0;
+      targetYaw = 116.5;
+      two = true;
+
+      begunForwards = false;
+
+      stopDriving();
+      spotRight(110);
+      delay(1500);
+
+      stopDriving();
+      delay(1000);
+
+      driveForward(120);
+      delay(750);
+
+      stopDriving();
+      delay(1000);
+      // driveForward(base);
+      //driveBackward(base);
+      //delay(50);
+      //driveForward(base);
+
+      two = true;
+    }
+
+    if (millis() - start_time > 4500 & three == false){
+      // stopDriving();
+      // delay(100);
+      curYawG = 180.0;
+      targetYaw = 243.5;
+      three = true;
+
+      begunForwards = false;
+
+      stopDriving();      
+      spotRight(110);
+      delay(2500);
+
+      stopDriving();
+      delay(1000);
+
+      driveForward(120);
+      delay(750);
+
+      stopDriving();
+      delay(1000);
+      //driveForward(base);
+
+      three = true;
+    }
+
+    if (millis() - start_time > 6000 & four == false){
+      // stopDriving();
+      // delay(100);
+      curYawG = 180.0;
+      targetYaw = 243.5;
+      four = true;
+
+      begunForwards = false;
+
+      stopDriving();      
+      spotLeft(110);
+      delay(2500);
+
+      stopDriving();
+      delay(1000);
+
+      driveForward(120);
+      delay(750);
+
+      stopDriving();
+      delay(1000);
+      //driveForward(base);
+
+      three = true;
+    }
+
+    // 180 w 225 target is negative error initially
+    int error = curYawG - targetYaw;
+
+    // negative error -> negative speed -> negative rotation (counterclockwise)
+    int RotateSpeed = (int) (kp_a * error);
+
+    if (RotateSpeed < -255) RotateSpeed = -255;
+    else if (RotateSpeed > 255) RotateSpeed = 255;
+
+    // up the base speed if on track
+    if (abs(error) < 10){
+
+      // increment once to indicate correct direction
+      straightLineMotion += 1;
+
+      // if been in correct direction 5 times in a row, error has stabalized, start forward timer
+      if (straightLineMotion > 10 & begunForwards == false){
+        forwardTime = millis();
+        begunForwards = true;
+      }
+
+      digitalWrite(LED_BUILTIN, HIGH);
+      onTrack = true;
+    }
+    else{
+      // reset correct direction if diverges (still unstable)
+      straightLineMotion = 0;
+
+      base = 0;
+      digitalWrite(LED_BUILTIN, LOW);
+      onTrack = false;
+    }
+
+    // // if needs reorienting, spot turn to reorient
+    // if (onTrack == false){
+    //     // spin rightwards if positive error
+    //     if (RotateSpeed >= 0){
+    //       leftPWM = min(255, RotateSpeed);
+    //       rightPWM = 0;
+    //       spotRight(RotateSpeed);
+          
+    //     }
+    //     // spin leftwards if negative error
+    //     else{
+    //       rightPWM = min(255, RotateSpeed);
+    //       leftPWM = 0;
+    //       spotLeft(-RotateSpeed);
+    //     }
+    // // otherwise, continue driving straight
+    // } else {
+    //     driveForward(base);
+    //     leftPWM = base;
+    //     rightPWM = base;
+    // }
+
+
+     if (myICM.dataReady()){
+        myICM.getAGMT();
+        
+        // Sending IMU data 
+        curPitchG = 0; //getPitchGyr(&myICM, curPitchG, millis() - last_time);
+        curRollG = 0; // getRollGyr(&myICM, curRollG, millis() - last_time);
+        curYawG = getYawGyr(&myICM, curYawG,  millis() - last_time);
+        if (curYawG < 0.0) {curYawG = 360.0 + curYawG;}
+        last_time = millis();
+
+        //sendFFTData(millis(), getPitch(&myICM), getRoll(&myICM), curPitchG, curRollG, curYawG);
+
+        //complementPitch = curPitchG*0.9 + getPitch(&myICM)*0.1;
+        //complementRoll = curRollG*0.9 + getRoll(&myICM)*0.1;
+
+      }  
+            
+    //sendComplement(millis(), complementPitch, complementRoll);  
+
+    // Sending TOF Data
+    if (distanceSensor1.checkForDataReady()){
+        ONEDistance = distanceSensor1.getDistance(); 
+        distanceSensor1.clearInterrupt();
+        distanceSensor1.stopRanging();
+        distanceSensor1.startRanging();
+    }
+
+    if (distanceSensor2.checkForDataReady()){
+        TWODistance = 0; // distanceSensor2.getDistance(); 
+        distanceSensor2.clearInterrupt();
+        distanceSensor2.stopRanging();
+        distanceSensor2.startRanging();
+    }
+
+    // to send the most recent reading on every iteration
+    //sendPIDDebug(millis(), complementPitch, complementRoll, curYawG, ONEDistance, TWODistance, leftPWM, rightPWM);
+
+    // log up to 10000 readings for each stream
+    if (logCount < entries){
+      timeArr[logCount] = millis();
+      targetArr[logCount] = targetYaw;
+      errorArr[logCount] = error;
+      yawArr[logCount] = curYawG;
+      ONEDistArr[logCount] = ONEDistance;
+      leftPWMArr[logCount] = leftPWM;
+      rightPWMArr[logCount] = rightPWM;
+      logCount += 1;
+    } 
+    // if reached conservative number of logs during sampling(to ensure not running out of memory)
+    else{
+
+      digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
+      sendPIDDebugArr(timeArr, targetArr, errorArr, yawArr, ONEDistArr, leftPWMArr, rightPWMArr);
+
+      // reset all logs at once
+      logCount = 0;
+    }
+
+  }
+
+  stopDriving();
+
+
+}
+
 enum CommandTypes
 {
     PING,
@@ -1682,7 +2078,8 @@ enum CommandTypes
     STUNT,
     ANGSPEED, 
     LOCALIZATION,
-    LTWELVE
+    LTWELVE,
+    LT2
     
 };
 
@@ -1916,6 +2313,11 @@ handle_command()
 
         case LTWELVE:{
           l12();
+          break;
+        }
+
+        case LT2:{
+          lt2();
           break;
         }
 

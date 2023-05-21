@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lab 12</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="imgs/about.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=https://fonts.googleapis.com/css?family=Inconsolata:400,500,600,700|Raleway:400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: MyPortfolio - v4.10.0
+  * Template URL: https://bootstrapmade.com/myportfolio-bootstrap-portfolio-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Navbar ======= -->
+
+  <main id="main">
+
+    <section class="section">
+      <div class="container">
+        <div class="row mb-4 p-5 align-items-center">
+          <a class="navbar-brand" href="index.html">Back to Portfolio</a>
+          <p> </p>
+          <h1>Lab 12</h1>
+
+          <p> </p>
+          <h4>Objective </h4>
+          <p>
+            In this lab, I worked alone to put together a method for navigating a set of waypoints in the lab arena as quickly as possible. I experimented with variations of closed loop control in particular, before settling on one overarching method that prioritised speed over accuracy.
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <h4>Overarching Philosophy</h4>
+          <p> 
+            Inspecting the lab 12s of my peers and previous years, I determined that while many labs are successful at reaching all the waypoints, they struggle to do so quickly. The source of the slowdown was common. Each robot would first come to a complete stop before beginning to spot turn towards the next waypoint. It would then remain in place until the spot turn had completed before beginning to move forward. I sought to eliminate this two-fold slowdown by beginning to move towards the next waypoint before reaching the upcoming waypoint, and maintaining momentum while undergoing the turn. This reflects something closer to how cars take turns in the real world, and reduce battery consumption from repeated starts/stops. The tradeoff, however, is that I chose to sacrifice hitting the center of each waypoint consistently. For this lab I gave myself the goal of having all four sets of wheels enter the tile containing each waypoint. 
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <h4>Approach Techniques</h4>
+          <p> 
+            There were three ways I could accomplish my goals this lab, presented here in increasing execution speed. </p>
+            
+            <h5>Approach 1</h5>
+            <p>
+            The first would be to rely on localization at each waypoint to generate the path to the next, and to ensure each waypoint was hit. While my localization from lab 11 was sufficiently accurate to support this approach, it would not execute quickly enough to succeed in my objective of minimizing total runtime. Having to do a spot turn would also upend the rationale for my philosophy, as we would neither maintain momentum betwen waypoints, or reflect how cars move in the real world. 
+            </p>
+            
+            <h5>Approach 2</h5>
+            <p>
+            The second method would be conducting closed loop control on forward-facing distance and heading to hit each waypoint. This is likely the golden mean between execution speed, as it forgoes costly localization, and accuracy, as theoretically we could hard-code the target headings and forward-distances for each waypoint. However, I chose to avoid this approach too. Looking back on my lab 9, I found that the effective range for my forward-facing TOF is around 1.5-2 meters. Looking at the waypoints, approaching the second, third, fifth, sixth, and seventh waypoints would all report arbitrary distances for the first part of the leg. Overcoming this would require hardcoding some blind running time at the start of each of these legs. I also noticed the overshoot of many robots using this approach without well-tuned PID. Having to experiment with both the blind running times and the PID values, as well as hardcoding so many elements, would likely be a large time drain, and arguably not very unique in the resultant drive path. 
+            </p>
+
+            <p> </p>
+            <p> </p>
+  
+            <img class="img-fluid" src="imgs/lab12/traj.png" style="width: 80%; height: 80%">
+  
+            <p> </p>
+            <p> </p>
+            
+            <h5>Approach 3</h5>
+            <p>
+            Thus, I opted for the third approach - the fastest, but also most prone to error. In this, I set a base PWM to maintain throughout the run. Experimentally, I account for this base PWM in open loop control that determines how long the robot will drive straight towards the next waypoint before setting a new target heading to make the waypoint after. To turn, I will add a value to the PWM of one side of the vehicle, and remove it from the PWM of the other. This value will be determined by proportional control on the heading of the robot, active throughout the run. The end result, in theory, would be a robot that maintains constant motion though the whole run, and drives in a manner that resembles a slalom, or a car on a curvy road. An additional benefit this method lends is that if at any point the heading of the robot dislaigns with what is expected to reach the next waypoint, adustments will be made on the fly - much like a car staying in a lane.  While I recognized in advance that only perfectly tuned heading control, and getting heading readings with minimum drift, would be required to prevent horrific overshoot on turns (turning smooth car-like turns into spinouts) I chose to give it a shot. 
+          </p>  
+
+          <p> Below are documented code snippets at the core of the operation. The first determines if the robot is 'on track' or not - checking if its current heading error is less than the prescribed 15 degrees. When the robot is newly and steadily on track, as it would be following stabalising on a new heading, a variable called forwardTime captures the time since it reached this state (this will particuarly be noted later in the lab). Regardless of being on track or not, the error is constantly being updated against the target heading, and the corresponding rotation speed needed to bring it back onto a perfect heading is updated. The heading was updated by collecting the most recently available IMU angular speed, integrating it over the timestep since the most recent, and adding to the previous heading. 
+          </p>
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/6362de00c09ac38352aa7d748fbfa362.js"></script>
+
+          
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <p>
+            When the robot is off track -  as it would be immediately after reaching a waypoint when the next heading is assigned as the setpoint, or if the robot leaves the acceptable 15 degree diversion, the following snippet shows how the left and right PWM changes.
+          </p>
+
+          
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <script src="https://gist.github.com/Kumagi360/d0aa385c3ca743f81d9b425c2b5b3f93.js"></script>
+
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+          <p> To use these functions, we need to set target headings, and forward drive durations for each stretch of the drive path. Expanded out of its abstracted function form for clarity, the following is that function. The current yaw was set to 180.0 after reaching each waypoint to avoid wraparound issues with heading, and as due to drift heading errors would otherwise accumulate over time. The target angles, in reference to the 180.0, were computed by calculating the angles connecting each waypoint to the next. The 'magic numbers' that required the most trial and error work here were the forwardTime values allowing enough straight line drive between waypoints.
+          </p>
+
+          
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+
+          <script src="https://gist.github.com/Kumagi360/3065226062376eabaf84693d2780a9fb.js"></script>
+
+          
+          <p> </p>
+          <p> </p>
+          <p> </p>
+
+
+
+          <h4>Experimenting Outside the Arena</h4>
+          <p> 
+            Before attemtpting in the arena, I wanted to verify I was able to turn accurately while maintaining forward motion, and prevent unstable states reaching target headings. Scaling the arena to 1/2 size, I set values for forwardTime and the angles between turns accordingly. I then ran the waypoints 1-5 repeatedly, adjusting the values, until I got behavior that matched what I hoped to see in the arena. Below are two runs that can be visually verified as accurate to the scaled arena.
+          </p>
+
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls style="width: 70%; height: 70%">
+            <source src="imgs/lab12/ooA.mov" type="video/mp4">
+          </video>
+
+          
+          <p> </p>
+          <p> </p>
+
+          <video preload="auto" controls style="width: 70%; height: 70%">
+            <source src="imgs/lab12/ooA2.mov" type="video/mp4">
+          </video>
+
+          
+          <p> </p>
+          <p> </p>
+
+
+
+          <h4> Experimenting in the Arena</h4>
+
+          <p>
+            Having found success with navigating the course replicated and scaled outside the arena, I began making adjustments with the arena's dimensions. unfortunately, under end-of-semester time crunch, I couldn't manage to make it through all the waypoints in a single run. Below are three videos (in order of their occurance) that each showcase characteristics of the method, and are contenders for being my 'best run' because of it. Analyzing each, I identify a different strength of my method, the weakness of my method that caused the failure, and improvements I would make should I have had more time.</p>
+
+            <p> </p>
+            <p> </p>
+
+
+            <h5> Notable Attempt 1 </h5>
+
+    
+              <video preload="auto" controls style="width: 70%; height: 70%">
+                <source src="imgs/lab12/miss3.MOV" type="video/mp4">
+              </video>
+    
+              <p> </p>
+              <p> </p>
+
+              <p>
+                This first video showcases the robot's ability to adjust when it perceived it is off course. After clearing waypoint 2 (the waypoint after the starting) we see it dramatically overshoot in heading correction to face the smaller box rather than waypoint 3. While maintaining its forward motion, it then corrects this, to match the heading necessary to get to waypoint 3 from 2. However, it is the constant motion of the robot that means it is now out of line to get to 3 from 2. I believe this failure mode, of a misalignment in heading due to inaccurate starting position, can be remedied by a combination of improving the controller, or reducing the base speed of the robot. In both cases, the initial angle overshoot would be reduced, and thus the resulting position offset upon correction would be less significant. A more permanent fix would be incorporating dead reckoning - knowledge of change in position as a function of actuation inputs alone. To do this would require stiff characterization of the translation of motor inputs to outputs, and consistency in these outputs across all points in the arena. If I had more time, this is likely the solution I would have implemented to improve this method.</p>
+
+
+                <p> </p>
+                <p> </p>
+
+                <h5> Notable Attempt 2 </h5>
+
+  
+  
+    
+              <video preload="auto" controls style="width: 70%; height: 70%">
+                <source src="imgs/lab12/TURN.mov" type="video/mp4">
+              </video>
+    
+              <p> </p>
+              <p> </p>
+
+              <p>
+                This second video, and improvement on the controller from the first, showcases the ability of the robot to recover from getting stuck thanks to the forwardTime stop and start feature. Although not in the code snippets above due to bugs, I believe this is important to the method should it be re-explored, as it helped overcome the exact issue of getting stuck. The concept of the stop and start is to stop the forwardTime timer when the robot is outside of its target error bound (15 degreees). As it continue to attempt to reorient, the degree to which the drive is counted towards the forwardTime timer is discounted by the degree of error. The higher the error, the less the motion of the robot will be in the forward directon, and thus less of that time can be considered forward motion. As a result, while the robot lost time getting stuck on the box here, it accounted for this time as it reoriented for waypoint 5. While it overshot slightly, it correctly determined that it is at the fifth waypoint, rather than assuming it was further along the path. As a result, we see it reorient towards waypoint 6 perfectly. The overshoot in getting to waypoint 3 was a simple fix of adjusting the open loop forwardTime time required between waypoints 2 and 3. The error in getting to waypoint 6 was a simple error on my part of assigning the correct heading for the next rotation. </p>
+
+                
+                <p> </p>
+                <p> </p>
+
+                <h5> Notable Attempt 3 </h5>
+
+
+
+                <video preload="auto" controls style="width: 70%; height: 70%">
+                  <source src="imgs/lab12/DRIVE.mov" type="video/mp4">
+                </video>
+      
+                <p> </p>
+                <p> </p>
+    
+                <p>
+                  This third video, getting to the furthest position I achieved in the arena, showcases the robots ability to make accurate turns in motion up to 45 degrees. Having tuned from the controller from the second run, I found I could make these turns without much positional offset (caused by having to compensate for overshoot). Yet, we see there is much overshoot caused by turns of greater than 45 degrees, exacerbated by running close to steady state (max) speed. I would improve this by adding I and D terms to my controller, and perhaps a 'smart corning' function. This function would, rather than changing the target heading suddenly,  instead incrementally change the target heading towards the next waypoint as the current waypoint is appraoched. This would flatten out the change in error, and present it more as a smooth curve rather than a discontinuity - thereby reducing the immediate rotational speed burst that causes heading overshoot. Below is a collected data plot demonstrating this error discontunity. Implementing smart cornering was my original idea for the lab, but couldn't be executed within the time constraints. </p>
+
+                  <p> </p>
+                  <p> </p>
+        
+                  <img class="img-fluid" src="imgs/lab12/disc.png" style="width: 70%; height: 70%">
+        
+                  <p> </p>
+                  <p> </p>
+                  <p> </p>
+                  <p> </p>
+
+                  <h4> Wrapping Up...  </h4>
+
+                  <p> </p>
+
+
+                  <p>
+                    While none of my attempts in the arena satisfied my goal of hitting each waypoint within its tile, and clearing the whole path, I consider this lab a partial success. Putting together aspects of closed loop control, and coming up with a novel method that prioritised speed over accuracy was challenging and engaging. With time, as explained in the videos above, there are relatively simple extensions to this method that would doubtless have it clear the whole course, and have it do so faster than my peers'. I would also have liked to incorporate a localization element to my lab, and believe an answer to reconciling the slowdown it introduces is to create a low-resolution lidar outfit by adding multiple TOFs in set positions around the car. Implementing this together with the smart cornering discussed after the third video would, I believe, be a fantastic (albeit expensive) solution. </p>
+
+                    <p>
+                      Massive thank you to Professor Petersen and all the TAs of this class for making lectures and labs so informative and enjoyable! I had great fun throughout and particuarly loved how the course combined rigorous theory with the reality of practical application. Highly recommend!
+                    </p>
+
+            
+
+
+        </div>
+      </div>
+
+    </section>
+
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="mb-1">&copy; Kunal Gupta, 2023</p>
+          <div class="credits">
+            <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=MyPortfolio
+          -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          </div>
+        </div>
+        <div class="col-sm-6 social text-md-end">
+          <a href="https://www.linkedin.com/in/kunalgupta360/"><span class="bi bi-linkedin"></span></a>
+          <a href="https://github.com/Kumagi360/Fast_Robots_Portfolio"><span class="bi bi-github"></span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

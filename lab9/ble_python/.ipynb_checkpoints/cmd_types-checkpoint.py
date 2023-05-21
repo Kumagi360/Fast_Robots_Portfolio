@@ -22,5 +22,6 @@ class CMD(Enum):
     ANGSPEED = 18
     LOCALIZATION = 19
     LTWELVE = 20
+    LT2 = 21
     
     
